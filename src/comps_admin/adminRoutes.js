@@ -5,6 +5,8 @@ import ClientsList from './clients/clientsList'
 import ProffesionalsList from './proffesionals/proffesionalsList'
 import EventsList from './events/eventsList'
 import UsersList from './users/usersList'
+import EditProffesional from './proffesionals/editProffesional'
+import AddProffesionalForm from './proffesionals/createProffesional'
 export const adminRoutes = () => {
     return (
         <>
@@ -12,6 +14,8 @@ export const adminRoutes = () => {
             <Route path="/admin/users" element={<UsersList />} />
             <Route path="/admin/clients" element={<ClientsList />} />
             <Route path="/admin/proffesionals" element={< ProffesionalsList/>} />
+            <Route path="/admin/addProffesional" element={< AddProffesionalForm/>} />
+            <Route path="/admin/editProffesional/:id" element={< EditProffesional/>} />
             <Route path="/admin/events" element={< EventsList/>} />
         </>
     )

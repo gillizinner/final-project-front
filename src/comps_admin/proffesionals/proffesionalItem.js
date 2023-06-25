@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
 export default function ProffesionalItem(props) {
     let item = props.item;
@@ -37,7 +38,7 @@ export default function ProffesionalItem(props) {
             <td>{String(item.active)}</td>
 
             <td>
-                <button className='badge bg-danger'>Del</button>
+                <Link className='btn btn-info me-2' to={"/admin/editProffesional/" + item._id} >Edit</Link>
             </td>
         </tr>
     )

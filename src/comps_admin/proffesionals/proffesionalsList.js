@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
 import ProffesionalItem from '../proffesionals/proffesionalItem';
+import CheckAdmin from '../checkAdmin';
 export default function ProffesionalsList() {
     const [ar, setAr] = useState([]);
 
@@ -26,8 +28,9 @@ export default function ProffesionalsList() {
 
     return (
         <div className='container'>
-            {/* <CheckAdminComp /> */}
+            <CheckAdmin />
             <h1>List of proffesionals in systems</h1>
+            <Link to="/admin/addProffesional" className='btn btn-success'>Add new proffesional</Link>
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
