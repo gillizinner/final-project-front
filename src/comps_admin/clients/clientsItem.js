@@ -1,5 +1,6 @@
 import React from 'react'
 import { API_URL,doApiMethod } from '../../services/apiService';
+import { Link } from 'react-router-dom';
 export default function ClientItem(props) {
     let item = props.item;
 
@@ -13,7 +14,7 @@ export default function ClientItem(props) {
         bodyData = {role:"user"}
       }
   
-      let url = API_URL+"/users/changeRole/"+item._id;
+      let url = API_URL + "/users/changeRole/" + item._id;
       try{
         let resp = await doApiMethod(url,"PATCH",bodyData)
         console.log(resp.data)
@@ -40,7 +41,7 @@ export default function ClientItem(props) {
         <td>{item.address.building}</td>
         
         <td>
-          <button className='badge bg-danger'>Del</button>
+        <Link className='btn btn-info me-2' to={"/admin/editClient/"+item._id} >Edit</Link>
         </td>
       </tr>
     )

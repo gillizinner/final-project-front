@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
 import ClientItem from './clientsItem';
+import { Link } from 'react-router-dom';
+
 export default function ClientsList() {
     const [ar, setAr] = useState([]);
 
@@ -20,13 +22,13 @@ export default function ClientsList() {
             console.log(err);
             alert("there problem ,try again later")
         }
-
     }
 
 
     return (
         <div className='container'>
             {/* <CheckAdminComp /> */}
+            <Link to="/admin/addClient" className='btn btn-success'>Add new client</Link>
             <h1>List of clients in systems</h1>
             <table className='table table-striped table-hover'>
                 <thead>
