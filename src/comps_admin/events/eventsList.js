@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
 import EventItem from './eventItem';
+import CheckAdmin from '../checkAdmin';
 export default function EventsList() {
     const [ar, setAr] = useState([]);
 
@@ -26,7 +27,7 @@ export default function EventsList() {
 
     return (
         <div className='container'>
-            {/* <CheckAdminComp /> */}
+            <CheckAdmin />
             <h1>List of events in systems</h1>
             <table className='table table-striped table-hover'>
                 <thead>
