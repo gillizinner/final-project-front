@@ -7,7 +7,7 @@ export default function UsersList() {
     const [ar, setAr] = useState([]);
 
     useEffect(() => {
-        doApi();
+        doApi(); 
     }, [])
 
     const doApi = async () => {
