@@ -15,7 +15,7 @@ export default function EditClient() {
     }, [])
 
     const doApiInit = async () => {
-        let url = API_URL + "/clients/single/" + params["idEdit"];
+        let url = API_URL + "/clients/single/" + params["id"];
         try {
             let resp = await doApiMethod(url, "GET");
             console.log(resp.data);
@@ -34,7 +34,7 @@ export default function EditClient() {
     }
 
     const doApiForm = async (bodyFormData) => {
-        let url = API_URL + "/clients/" + params["idEdit"]
+        let url = API_URL + "/clients/" + params["id"]
         try {
             let resp = await doApiMethod(url, "PUT", bodyFormData);
             if (resp.data) {

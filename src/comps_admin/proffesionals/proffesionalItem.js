@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
-import { Link } from 'react-router-dom';
+
 export default function ProffesionalItem(props) {
     let item = props.item;
 

@@ -24,7 +24,7 @@ export const adminRoutes = () => {
             <Route path="/admin/addUser" element={<AddUserForm />} />
             <Route path="/admin/clients" element={<ClientsList />} />
             <Route path="/admin/addClient" element={<AddClientForm />} />
-            <Route path="/admin/editClient/:idEdit" element={<EditClient />} />
+            <Route path="/admin/editClient/:id" element={<EditClient />} />
             <Route path="/admin/proffesionals" element={< ProffesionalsList/>} />
             <Route path="/admin/addProffesional" element={< AddProffesionalForm/>} />
             <Route path="/admin/editProffesional/:id" element={< EditProffesional/>} />
