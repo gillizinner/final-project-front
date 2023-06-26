@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
 import UserItem from './userItem';
 import CheckAdmin from '../checkAdmin';
+import { Link } from 'react-router-dom';
 export default function UsersList() {
     const [ar, setAr] = useState([]);
 
@@ -28,6 +29,8 @@ export default function UsersList() {
     return (
         <div className='container'>
             <CheckAdmin />
+            {/* <CheckAdminComp /> */}
+            <Link to="/admin/addUser" className='btn btn-success'>Add new User</Link>
             <h1>List of users in systems</h1>
             <table className='table table-striped table-hover'>
                 <thead>
@@ -37,6 +40,7 @@ export default function UsersList() {
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Role</th>
                         <th>Active</th>
                     </tr>
                 </thead>

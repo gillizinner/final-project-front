@@ -1,16 +1,17 @@
 import React from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
+import { Link } from 'react-router-dom';
 export default function UserItem(props) {
     let item = props.item;
 
     // משנה תפקיד של משתמש
     const onRoleClick = async () => {
         let bodyData;
-        if (item.role == "user") {
+        if (item.role == "client") {
             bodyData = { role: "admin" }
         }
-        else {
-            bodyData = { role: "user" }
+        else if (item.role == "admin") {
+            bodyData = { role: "client" }
         }
 
         let url = API_URL + "/users/changeRole/" + item._id;
@@ -26,6 +27,28 @@ export default function UserItem(props) {
             alert("There problem, or you try to change superAdmin to user");
         }
     }
+    const onActiveClick = async () => {
+        let bodyData;
+        if (item.active == true) {
+            bodyData = { active: false }
+        }
+        else {
+            bodyData = { active: true }
+        }
+
+        let url = API_URL + "/users/changeActive/" + item._id;
+        try {
+            let resp = await doApiMethod(url, "PATCH", bodyData)
+            console.log(resp.data)
+            if (resp.data) {
+                props.doApi()
+            }
+        }
+        catch (err) {
+            console.log(err.response);
+            alert("There problem, or you try to anactive the superAdmin");
+        }
+    }
 
     return (
         <tr>
@@ -34,10 +57,22 @@ export default function UserItem(props) {
             <td>{item.name.lastName}</td>
             <td>{item.email}</td>
             <td>{item.phone}</td>
-            <td>{String(item.active)}</td>
+            <td>
+                <button onClick={onRoleClick} >
+                    {item.role}
+                </button>
+            </td>
+            <td>
+                <button onClick={onActiveClick}>
+                    {String(item.active)}
+                </button>
+            </td>
+
+            {/* <td>{String(item.active)}</td> */}
 
             <td>
-                <button className='badge bg-danger'>Del</button>
+                <Link className='btn btn-info me-2' to={"/admin/editUsers/" + item._id} >Edit</Link>
+
             </td>
         </tr>
     )
