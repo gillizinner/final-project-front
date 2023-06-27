@@ -5,6 +5,8 @@ import HeaderAdmin from './comps_admin/headerAdmin/headerAdmin';
 import {adminRoutes} from './comps_admin/adminRoutes'
 import LoginUser from './comps_users/loginUser';
 import { usersRoutes } from './comps_users/usersRoutes';
+import { clientsRoutes } from './comps_clients/clientsRoutes';
+import { ProffesionalsRoutes } from './comps_proffesionals/proffesionalsRoutes';
 function App() {
   return (
     <BrowserRouter>
@@ -19,9 +21,11 @@ function App() {
       {/* ADMIN ROUTES */}
       {adminRoutes()}
       {usersRoutes()}
+      {clientsRoutes()}
+      {ProffesionalsRoutes()}
      
     </Routes>
-    {/* <LoginUser/> */}
+    <LoginUser/>
   </BrowserRouter>
   );
 }

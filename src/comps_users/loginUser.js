@@ -132,6 +132,7 @@ import {
 import AddProffesionalForm from './proffesionalRegister';
 import { API_URL, doApiMethod } from '../services/apiService';
 import AddClientForm from './clientRegister';
+import LoginAdmin from '../comps_admin/loginAdmin/loginAdmin';
 
 export default function LoginUser() {
   const [activeTab, setActiveTab] = useState('login');
@@ -162,10 +163,10 @@ export default function LoginUser() {
     setRegistrationTab(tab);
   };
 
-  const handleLoginFormSubmit = (data) => {
-    // Handle login form submission
-    console.log(data);
-  };
+  // const handleLoginFormSubmit = (data) => {
+  //   // Handle login form submission
+  //   console.log(data);
+  // };
 
   // const handleRegistrationFormSubmit = (data) => {
   //   // Handle registration form submission
@@ -180,7 +181,7 @@ export default function LoginUser() {
         let resp = await doApiMethod(url, "POST", bodyFormData)
         if (resp.data._id) {
             alert("proffesional added succefuly");
-            nav("/admin/proffesionals")
+            nav("/proffesionals/home")
         }
         else {
             alert("There problem , try again later")
@@ -200,7 +201,7 @@ const clienDoApi= async (bodyFormData) => {
       console.log(resp.data)
       if (resp.data._id) {
           alert("client was added succefuly");
-          nav("/admin/clients")
+          nav("/clients/home")
       }
       else {
           alert("There problem , try again later")
@@ -231,7 +232,7 @@ const clienDoApi= async (bodyFormData) => {
 
       <MDBTabsContent>
         <MDBTabsPane show={activeTab === 'login'}>
-          <form onSubmit={handleSubmit(handleLoginFormSubmit)}>
+          {/* <form onSubmit={handleSubmit(handleLoginFormSubmit)}>
             <MDBInput
               wrapperClass="mb-4"
               label="Email address"
@@ -260,7 +261,8 @@ const clienDoApi= async (bodyFormData) => {
             <p className="text-center">
               Not a member? <a href="#!">Register</a>
             </p>
-          </form>
+          </form> */}
+          <LoginAdmin/>
         </MDBTabsPane>
 
         <MDBTabsPane show={activeTab === 'register'}>
