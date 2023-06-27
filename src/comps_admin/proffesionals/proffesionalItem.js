@@ -7,7 +7,7 @@ export default function ProffesionalItem(props) {
 
     // משנה תפקיד של משתמש
     const onRoleClick = async () => {
-        let bodyData;
+        let bodyData; 
         if (item.role == "user") {
             bodyData = { role: "admin" }
         }
@@ -36,9 +36,7 @@ export default function ProffesionalItem(props) {
             <td>{item.name.lastName}</td>
             <td>{item.email}</td>
             <td>{item.phone}</td>
-            <td>{String(item.active)}</td>
-
-          
+            <td>{String(item.active)}</td>         
             <td>
                 <Link className='btn btn-info me-2' to={"/admin/editProffesional/" + item._id} >Edit</Link>
             </td>

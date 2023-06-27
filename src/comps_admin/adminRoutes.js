@@ -15,11 +15,13 @@ import EditUser from './users/editUser'
 // import EditProffesional from './proffesionals/editProffesional'
 import AddUserForm from './users/addNewUser'
 import AddProffesionalAdmin from './proffesionals/createProffesional'
+import UserProfile from '../comps_users/userProfile'
 
 export const adminRoutes = () => {
     return (
         <>
             <Route path="/admin" element={<LoginAdmin />} />
+            {/* <Route path="/admin/:id" element={<UserProfile/>} /> */}
             <Route path="/admin/users" element={<UsersList />} />
             <Route path="/admin/editUsers/:id" element={<EditUser />} />
             <Route path="/admin/addUser" element={<AddUserForm />} />

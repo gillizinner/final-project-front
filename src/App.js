@@ -4,6 +4,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom"
 import HeaderAdmin from './comps_admin/headerAdmin/headerAdmin';
 import {adminRoutes} from './comps_admin/adminRoutes'
 import LoginUser from './comps_users/loginUser';
+import { usersRoutes } from './comps_users/usersRoutes';
 function App() {
   return (
     <BrowserRouter>
@@ -17,9 +18,10 @@ function App() {
       <Route path="/*" element={<h2>Page 404</h2>}/>
       {/* ADMIN ROUTES */}
       {adminRoutes()}
+      {usersRoutes()}
      
     </Routes>
-    <LoginUser/>
+    {/* <LoginUser/> */}
   </BrowserRouter>
   );
 }
