@@ -1,0 +1,31 @@
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    position: relative;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .nav-links a.active {
+    font-weight: bold;
+  }
+  
+  .nav-underline {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    height: 2px;
+    background-color: #000;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  
+  
+  
+  
+  
