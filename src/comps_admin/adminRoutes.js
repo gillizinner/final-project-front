@@ -10,10 +10,11 @@ import AddClientForm from './clients/addClientForm'
 import EditClient from './clients/editClient'
 
 import EditProffesional from './proffesionals/editProffesional'
-import AddProffesionalForm from './proffesionals/createProffesional'
+// import AddProffesionalForm from './proffesionals/createProffesional'
 import EditUser from './users/editUser'
 // import EditProffesional from './proffesionals/editProffesional'
 import AddUserForm from './users/addNewUser'
+import AddProffesionalAdmin from './proffesionals/createProffesional'
 
 export const adminRoutes = () => {
     return (
@@ -26,7 +27,7 @@ export const adminRoutes = () => {
             <Route path="/admin/addClient" element={<AddClientForm />} />
             <Route path="/admin/editClient/:id" element={<EditClient />} />
             <Route path="/admin/proffesionals" element={< ProffesionalsList/>} />
-            <Route path="/admin/addProffesional" element={< AddProffesionalForm/>} />
+            <Route path="/admin/addProffesional" element={< AddProffesionalAdmin/>} />
             <Route path="/admin/editProffesional/:id" element={< EditProffesional/>} />
             <Route path="/admin/events" element={< EventsList/>} />
             <Route path="/admin/proffesionals" element={<ProffesionalsList/>} />
