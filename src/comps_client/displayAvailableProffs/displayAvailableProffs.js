@@ -24,12 +24,12 @@ export default function DisplayAvailableProffs(props) {
         let url = API_URL + "/clients/professionals-available?startDate=" + props.startDate + "&endDate=" + props.endDate;
         try {
             let resp = await doApiMethod(url, "GET");
-            console.log(resp.data);
-            console.log("prof list:");
+            // console.log(resp.data);
+            // console.log("prof list:");
             setprofList(resp.data);
-            console.log("filtered prof list:")
+            // console.log("filtered prof list:")
             setfilteredProfList(resp.data.filter((prof) => prof.category === "singer"));
-            console.log(filteredProfList);
+            // console.log(filteredProfList);
         }
         catch (err) {
             console.log(err);
@@ -42,6 +42,46 @@ export default function DisplayAvailableProffs(props) {
         setfilteredProfList(profList.filter((prof) => prof.category === category));
         setActiveLink(category);
     }
+
+    const availableDatesOfProffInRange=(prof_id)=>{
+        const prof = filteredProfList.filter(prof=>prof._id==prof_id);
+        // const availableDatesInRange = prof[0].
+        let availableDates=[];
+        const eventDates = prof[0].events.map(event => new Date(event.date));
+        // console.log("event dates of: "+prof[0].name.firstName)
+        // console.log(eventDates);
+        // console.log("start date");
+        // console.log(props.startDate);
+        // console.log("end date");
+        // console.log(props.endDate);
+        for (let date = new Date(props.startDate); date <= props.endDate; date.setDate(date.getDate() + 1)) {
+            // console.log("date in loop");
+            // console.log(date);
+            // if (!eventDates.includes(date)) {
+                if (!eventDates.some(eventDate => (eventDate.getFullYear() === date.getFullYear())&&(eventDate.getMonth() === date.getMonth())&&(eventDate.getDate() === date.getDate()))) {
+                let newDate = new Date(date);
+                availableDates.push(newDate);
+                // console.log("current availableDates")
+                // console.log(availableDates)
+            }
+        }
+        console.log("available dates of: "+prof[0].name.firstName+" in range:")
+        console.log(availableDates);
+        return availableDates;
+    }
+    // Filter professionals who have events on every single date within the range
+    // const filteredProfessionals = professionalsWithEvents.filter(professional => {
+    //     const eventDates = professional.events.map(event => event.date.toDateString());
+    //     // console.log(eventDates);
+    //     for (let date = new Date(start); date <= end; date.setDate(date.getDate() + 1)) {
+    //         // console.log(date);
+    //         if (!eventDates.includes(date.toDateString())) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // });
+    // console.log(filteredProfessionals);
     return (
         <div className='row'>
             {/* {props.startDate && props.endDate && <>
@@ -67,7 +107,7 @@ export default function DisplayAvailableProffs(props) {
           }}
         />
             </nav>
-            {filteredProfList.map((prof) => { return <ProfInfo key={prof._id} item={prof} /> })}
+            {filteredProfList.map((prof) => {let availableDates=availableDatesOfProffInRange(prof._id); console.log("pro info props availabledates:"); console.log(availableDates); return <ProfInfo key={prof._id} item={prof} availableDatesList={availableDates} /> })}
         </div>
     )
 }
