@@ -5,7 +5,7 @@ import { API_URL, doApiMethod } from '../../services/apiService';
 export default function ProffesionalItem(props) {
     let item = props.item;
 
-    // משנה תפקיד של משתמש
+    // משנה תפקיד של משתמש 
     const onRoleClick = async () => {
         let bodyData; 
         if (item.role == "user") {
