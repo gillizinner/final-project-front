@@ -47,7 +47,6 @@ export default function LoginAdmin() {
   let passwordRef = register("password", { required: true, minLength: 3 });
   return (
     <div className='container'>
-      <h1 className='text-center'>Log in to admin</h1>
       <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow mx-auto'>
         <label>Email:</label>
         <input {...emailRef} type="text" className='form-control' />
