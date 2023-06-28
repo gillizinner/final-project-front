@@ -1,14 +1,14 @@
 
 import React, { useEffect, useState } from 'react'
-import './userProfile.css';
-import { useNavigate, useParams } from 'react-router';
+import './clientProfile.css';
+import { useParams } from 'react-router';
 import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
-import UserProfileInfo from './userProfileInfo';
+import UserProfile from '../comps_users/userProfile';
+import UserProfileInfo from '../comps_users/userProfileInfo';
 
-export default function UserProfile() {
+export default function ClientProfile() {
     const [info, setInfo] = useState({});
-    // const nav = useNavigate();
     const params = useParams();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function UserProfile() {
 
 
     const doApiInit = async () => {
-        let url = API_URL + "/users/single/" + params["id"];
+        let url = API_URL + "/clients/single/" + params["id"];
         try {
             let resp = await doApiMethod(url, "GET");
             console.log(resp.data);
@@ -49,16 +49,21 @@ export default function UserProfile() {
                                         <MDBTypography tag="h6">My profile <button className='btn btn-warning'>Edit profile</button></MDBTypography>
                                         <hr className="mt-0 mb-4" />
                                         <UserProfileInfo info={info}/>
-                                        {/* <MDBRow className="pt-1">
-                                            <MDBCol size="6" className="mb-3">
-                                                <MDBTypography tag="h6">Email</MDBTypography>
-                                                <MDBCardText className="text-muted">{info.email}</MDBCardText>
+                                        <br />
+                                        <MDBRow className="pt-1">
+                                            <MDBCol size="4" className="mb-3">
+                                                <MDBTypography tag="h6">City</MDBTypography>
+                                                <MDBCardText className="text-muted">{info.address?.city}</MDBCardText>
                                             </MDBCol>
-                                            <MDBCol size="6" className="mb-3">
-                                                <MDBTypography tag="h6">{info.phone}</MDBTypography>
-                                                <MDBCardText className="text-muted">123 456 789</MDBCardText>
+                                            <MDBCol size="4" className="mb-3">
+                                                <MDBTypography tag="h6">Street</MDBTypography>
+                                                <MDBCardText className="text-muted">{info.address?.street}</MDBCardText>
                                             </MDBCol>
-                                        </MDBRow> */}
+                                            <MDBCol size="4" className="mb-3">
+                                                <MDBTypography tag="h6">Building</MDBTypography>
+                                                <MDBCardText className="text-muted">{info.address?.building}</MDBCardText>
+                                            </MDBCol>
+                                        </MDBRow>
 
                                         {/* <div className="d-flex justify-content-start">
                                             <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
