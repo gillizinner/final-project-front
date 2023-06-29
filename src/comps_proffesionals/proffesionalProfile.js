@@ -6,6 +6,7 @@ import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfile from '../comps_users/userProfile';
 import UserProfileInfo from '../comps_users/userProfileInfo';
+import { Link } from 'react-router-dom';
 
 export default function ProffesionalProfile() {
     const [info, setInfo] = useState({});
@@ -42,11 +43,13 @@ export default function ProffesionalProfile() {
                                         alt="name" className="my-5" style={{ width: '80px' }} fluid />
                                     <MDBTypography tag="h5">{info.name?.firstName} {info.name?.lastName}</MDBTypography>
                                     <MDBCardText>{info.category}</MDBCardText>
-                                    <MDBIcon far icon="edit mb-5" />
+                                    <Link  to={`/proffesionals/editProffesional/${info._id}`}><MDBIcon far icon="edit mb-5" /></Link>
                                 </MDBCol>
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
-                                        <MDBTypography tag="h6">My profile <button className='btn btn-warning'>Edit profile</button></MDBTypography>
+                                        <MDBTypography tag="h6">My profile
+                                            
+                                        </MDBTypography>
                                         <hr className="mt-0 mb-4" />
                                         <UserProfileInfo info={info} />
                                         <br />

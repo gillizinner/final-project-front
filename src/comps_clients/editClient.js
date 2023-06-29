@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useForm , useWatch} from 'react-hook-form';
-import { Link, useParams } from 'react-router-dom';
+import { useForm, useWatch } from 'react-hook-form';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../services/apiService';
 
 export default function EditClient(props) {
     const [info, setInfo] = useState({});
     const { register, handleSubmit, control, formState: { errors } } = useForm();
-    
+    const nav = useNavigate();
     const params = useParams();
     const watchPassword = useWatch({ control, name: "password", defaultValue: "" });
 
@@ -30,27 +30,33 @@ export default function EditClient(props) {
     const onSubForm = (bodyFormData) => {
         console.log(bodyFormData);
         delete bodyFormData.confirmPassword;
-        props.doApi(bodyFormData)
+        if (props.doApi) {
+            props.doApi(bodyFormData)
+        }
+        else {
+            doApiForm(bodyFormData)
+        }
+
     }
 
-    // const doApiForm = async (bodyFormData) => {
-    //     let url = API_URL + "/clients/" + params["id"]
-    //     try {
-    //         let resp = await doApiMethod(url, "PUT", bodyFormData);
-    //         if (resp.data) {
-    //             console.log(resp.data)
-    //             alert("client update succefuly");
-    //             nav("/admin/clients")
-    //         }
-    //         else {
-    //             alert("There problem , try again later")
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log(err);
-    //         alert("There problem , or client already in system")
-    //     }
-    // }
+    const doApiForm = async (bodyFormData) => {
+        let url = API_URL + "/clients/" + params["id"]
+        try {
+            let resp = await doApiMethod(url, "PUT", bodyFormData);
+            if (resp.data) {
+                console.log(resp.data)
+                alert("client update succefuly");
+                nav(`/clients/clientProfile/${params["id"]}`)
+            }
+            else {
+                alert("There problem , try again later")
+            }
+        }
+        catch (err) {
+            console.log(err);
+            alert("There problem , or client already in system")
+        }
+    }
 
     return (
         <div className='container'>
@@ -111,7 +117,11 @@ export default function EditClient(props) {
 
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Update</button>
-                    <Link className='btn btn-danger' to="/admin/clients">Back</Link>
+                    {props.doApi ?
+                        <Link className='btn btn-danger' to="/admin/clients">Back</Link> :
+                        <Link className='btn btn-danger' to={`/clients/clientProfile/${params["id"]}`}>Back</Link>}
+
+
                 </div>
             </form> : <h2>Loading...</h2>}
 

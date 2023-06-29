@@ -1,8 +1,8 @@
 import React from 'react'
-import EditClient from '../../comps_users/clientEdit';
+import EditClient from '../../comps_clients/editClient';
 import CheckAdmin from '../checkAdmin';
 import { API_URL, doApiMethod } from '../../services/apiService';
-import { useNavigate,useParams } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 
 function AdminEditClient() {
     const nav = useNavigate();
