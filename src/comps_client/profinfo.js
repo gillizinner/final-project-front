@@ -1,7 +1,15 @@
-import React from 'react';
+import React,{useContext, useRef} from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
-
+import { AppContext } from '../appContext';
 export default function ProInfo(props) {
+        const {addToSelectedProffs} = useContext(AppContext);
+        const selectRef=useRef();
+    const onBookClick=()=>{
+        const selectedDate = new Date(selectRef.current.value);
+        if(selectRef.current.value!="View Available Dates:"){
+            addToSelectedProffs({proff:props.item,date:selectedDate});
+        }
+    }
     return (
         <div className='col-md-6 col-sm-12'>
             <MDBContainer>
@@ -35,6 +43,11 @@ export default function ProInfo(props) {
                                             <div>
                                                 <p className=" mb-0">Cost: {props.item.cost} NIS</p>
                                             </div>
+                                            {props.availableDatesList && <div>
+                                                <select ref={selectRef} className='form-control' required>
+                                                    <option>View Available Dates:</option>
+                                                    {props.availableDatesList?.map(date => <option key={date} value={date}>{date.toLocaleDateString()}</option>)}
+                                                </select></div>}
                                         </div>
                                         <div className="d-flex flex-row align-items-center mb-2">
                                             {/* <p className="mb-0 me-2">@sheisme</p> */}
@@ -67,7 +80,7 @@ export default function ProInfo(props) {
                                 </div>
                                 <hr />
                                 {/* <MDBCardText>52 comments</MDBCardText> */}
-                                <MDBBtn color="dark" rounded block size="lg">
+                                <MDBBtn onClick={()=>onBookClick()} color="dark" rounded block size="lg">
                                     <MDBIcon far icon="clock me-2" /> Book now
                                 </MDBBtn>
                             </MDBCardBody>
