@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfileInfo from './userProfileInfo';
+import { Link } from 'react-router-dom';
 
 export default function UserProfile() {
     const [info, setInfo] = useState({});
@@ -44,9 +45,14 @@ export default function UserProfile() {
                                     <MDBCardText>{info.role}</MDBCardText>
                                     <MDBIcon far icon="edit mb-5" />
                                 </MDBCol>
+                               
+                                
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
-                                        <MDBTypography tag="h6">My profile <button className='btn btn-warning'>Edit profile</button></MDBTypography>
+                                        <MDBTypography tag="h6">My profile 
+                                        {info.role=="client"?<Link className='btn btn-warning' to={`/clients/editClient/${info._id}`}>Edit profile</Link>:<Link className='btn btn-warning' to={`/proffesionals/editProffesional/${info._id}`}>Edit profile</Link>}
+                                        {/* <button className='btn btn-warning'>Edit profile</button> */}
+                                        </MDBTypography>
                                         <hr className="mt-0 mb-4" />
                                         <UserProfileInfo info={info}/>
                                         {/* <MDBRow className="pt-1">

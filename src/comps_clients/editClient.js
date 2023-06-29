@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useForm , useWatch} from 'react-hook-form';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { API_URL, doApiMethod } from '../../services/apiService';
+import { useForm, useWatch } from 'react-hook-form';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { API_URL, doApiMethod } from '../services/apiService';
 
-export default function EditClient() {
+export default function EditClient(props) {
     const [info, setInfo] = useState({});
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const nav = useNavigate();
@@ -30,7 +30,13 @@ export default function EditClient() {
     const onSubForm = (bodyFormData) => {
         console.log(bodyFormData);
         delete bodyFormData.confirmPassword;
-        doApiForm(bodyFormData)
+        if (props.doApi) {
+            props.doApi(bodyFormData)
+        }
+        else {
+            doApiForm(bodyFormData)
+        }
+
     }
 
     const doApiForm = async (bodyFormData) => {
@@ -40,7 +46,7 @@ export default function EditClient() {
             if (resp.data) {
                 console.log(resp.data)
                 alert("client update succefuly");
-                nav("/admin/clients")
+                nav(`/clients/clientProfile/${params["id"]}`)
             }
             else {
                 alert("There problem , try again later")
@@ -111,7 +117,11 @@ export default function EditClient() {
 
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Update</button>
-                    <Link className='btn btn-danger' to="/admin/clients">Back</Link>
+                    {props.doApi ?
+                        <Link className='btn btn-danger' to="/admin/clients">Back</Link> :
+                        <Link className='btn btn-danger' to={`/clients/clientProfile/${params["id"]}`}>Back</Link>}
+
+
                 </div>
             </form> : <h2>Loading...</h2>}
 

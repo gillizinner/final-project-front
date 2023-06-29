@@ -37,7 +37,7 @@ export default function AddClientForm(props) {
     return (
         <div className='container'>
             
-            {/* <h2>Add a new client</h2> */}
+            
             <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow'>
                 <label>First name:</label>
                 <input {...register("name.firstName", { required: true, minLength: 2 })} type="text" className='form-control' />

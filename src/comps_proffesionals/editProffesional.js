@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm, useWatch } from "react-hook-form"
-import { API_URL, doApiMethod } from '../../services/apiService';
-import CheckAdmin from '../checkAdmin';
+import { API_URL, doApiMethod } from '../services/apiService';
 
 
-export default function EditProffesional() {
+
+export default function EditProffesional(props) {
     const [info, setInfo] = useState({})
     const { control, register, handleSubmit, formState: { errors } } = useForm();
     const nav = useNavigate();
@@ -80,7 +80,12 @@ export default function EditProffesional() {
         delete bodyFormData.confirmPassword;
 
         console.log(bodyFormData)
-        doApiForm(bodyFormData);
+       if(props.doApi){
+            props.doApi(bodyFormData)
+        }
+        else{
+            doApiForm(bodyFormData)
+        }
     }
 
     const doApiForm = async (bodyFormData) => {
@@ -90,7 +95,7 @@ export default function EditProffesional() {
             let resp = await doApiMethod(url, "PUT", bodyFormData)
             if (resp.data) {
                 alert("Proffesional update succefuly");
-                nav("/admin/proffesionals")
+                nav(`/proffesionals/proffesionalProfile/${params["id"]}`)
             }
             else {
                 alert("There problem , try again later")
@@ -106,7 +111,7 @@ export default function EditProffesional() {
     return (
 
         <div className='container'>
-            <CheckAdmin />
+            {/* <CheckAdmin /> */}
             <h2>Edit proffesional</h2>
             {info.name ? <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow'>
                 <label>First name:</label>
@@ -131,8 +136,11 @@ export default function EditProffesional() {
                 })} type="password" className='form-control' />
                 {errors.confirmPassword && <div className='text-danger'>Please confirm your password.</div>}
                 <label>Category:</label>
-                <input defaultValue={info.category} {...register("category", { required: true, minLength: 2 })} type="text" className='form-control' />
-                {errors.category && <div className='text-danger'>Enter valid category </div>}
+                <select {...register("category", { required: true })} className='form-control' >
+                    {['Photographer','Makeup Artist','Hair Stylist','Singer','Band','Event Designer'].map(category => <option key={category} value={category}>{category}</option>)}
+                </select>
+                {errors.category && <div className='text-danger'>Choose area </div>}
+                
                 <label>Cost:</label>
                 <input defaultValue={info.cost} {...register("cost", { required: true, minLength: 2 })} type="number" className='form-control' />
                 {errors.cost && <div className='text-danger'>Enter valid cost (min 0) </div>}
@@ -164,7 +172,10 @@ export default function EditProffesional() {
                 <img src={info.img_url} alt="img" height="100" />
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Update</button>
-                    <Link className='btn btn-danger' to="/admin/proffesionals/">Back</Link>
+                    {props.doApi ?
+                        <Link className='btn btn-danger' to="/admin/proffesionals">Back</Link> :
+                        <Link className='btn btn-danger' to={`/proffesionals/proffesionalProfile/${params["id"]}`}>Back</Link>}
+
                 </div>
             </form> : <h2>Loading...</h2>}
         </div>

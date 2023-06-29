@@ -83,8 +83,11 @@ export default function AddProffesionalForm(props) {
                 })} type="password" className='form-control' />
                 {errors.confirmPassword && <div className='text-danger'>Please confirm your password.</div>}
                 <label>Category:</label>
-                <input {...register("category", { required: true, minLength: 2 })} type="text" className='form-control' />
-                {errors.category && <div className='text-danger'>Enter valid category </div>}
+                <select {...register("category", { required: true })} className='form-control' >
+                    {['Photographer','Makeup Artist','Hair Stylist','Singer','Band','Event Designer'].map(category => <option key={category} value={category}>{category}</option>)}
+                </select>
+                {errors.category && <div className='text-danger'>Choose area </div>}
+                
                 <label>Cost:</label>
                 <input {...register("cost", { required: true, minLength: 2 })} type="number" className='form-control' />
                 {errors.cost && <div className='text-danger'>Enter valid cost (min 0) </div>}
