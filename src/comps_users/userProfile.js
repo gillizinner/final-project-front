@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfileInfo from './userProfileInfo';
+import { Link } from 'react-router-dom';
 
 export default function UserProfile() {
     const [info, setInfo] = useState({});
@@ -42,11 +43,15 @@ export default function UserProfile() {
                                         alt="name" className="my-5" style={{ width: '80px' }} fluid />
                                     <MDBTypography tag="h5">{info.name?.firstName} {info.name?.lastName}</MDBTypography>
                                     <MDBCardText>{info.role}</MDBCardText>
-                                    <MDBIcon far icon="edit mb-5" />
+                                    <Link to={`/users/editUser/${info._id}`}><MDBIcon far icon="edit mb-5" /></Link>
+                                    
                                 </MDBCol>
+                               
+                                
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
-                                        <MDBTypography tag="h6">My profile <button className='btn btn-warning'>Edit profile</button></MDBTypography>
+                                        <MDBTypography tag="h6">My profile 
+                                        </MDBTypography>
                                         <hr className="mt-0 mb-4" />
                                         <UserProfileInfo info={info}/>
                                         {/* <MDBRow className="pt-1">
@@ -60,11 +65,11 @@ export default function UserProfile() {
                                             </MDBCol>
                                         </MDBRow> */}
 
-                                        {/* <div className="d-flex justify-content-start">
+                                         <div className="d-flex justify-content-start">
                                             <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
                                             <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
                                             <a href="#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
-                                        </div> */}
+                                        </div> 
                                     </MDBCardBody>
                                 </MDBCol>
                             </MDBRow>

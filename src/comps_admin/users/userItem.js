@@ -58,17 +58,20 @@ export default function UserItem(props) {
             <td>{item.email}</td>
             <td>{item.phone}</td>
             <td>
-                <button onClick={onRoleClick} >
+                <button className='btn' onClick={onRoleClick} >
                     {item.role}
                 </button>
             </td>
             <td>
-                <button onClick={onActiveClick}>
+                {item.active ? <button className='btn btn-outline-primary' onClick={onActiveClick}>
                     {String(item.active)}
-                </button>
+                </button> : <button className='btn btn-outline-danger' onClick={onActiveClick}>
+                    {String(item.active)}
+                </button>}
+
             </td>
 
-            {/* <td>{String(item.active)}</td> */}
+
 
             <td>
                 <Link className='btn btn-info me-2' to={"/admin/editUsers/" + item._id} >Edit</Link>
