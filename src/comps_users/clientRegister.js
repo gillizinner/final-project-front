@@ -14,24 +14,7 @@ export default function AddClientForm(props) {
         props.doApi(bodyFormData)
     }
 
-    // const doApi = async (bodyFormData) => {
-    //     let url = API_URL + "/clients/signUp";
-    //     try {
-    //         let resp = await doApiMethod(url, "POST", bodyFormData);
-    //         console.log(resp.data)
-    //         if (resp.data._id) {
-    //             alert("client was added succefuly");
-    //             nav("/admin/clients")
-    //         }
-    //         else {
-    //             alert("There problem , try again later")
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log(err);
-    //         alert("There problem , or client already in system")
-    //     }
-    // }
+    
 
 
     return (
@@ -52,7 +35,7 @@ export default function AddClientForm(props) {
                 {errors.email && <div className='text-danger'>Enter valid email (expected @) </div>}
                 
                 <label>Password:</label>
-                <input {...register("password", { required: true, minLength: 2 })} className='form-control'></input>
+                <input {...register("password", { required: true, minLength: 2 })} type='password' className='form-control'></input>
                 {errors.password && <div className='text-danger'>Enter valid password  (min 2 chars) </div>}
 
                 <label>Confirm Password:</label>
@@ -70,14 +53,7 @@ export default function AddClientForm(props) {
                 <input {...register("img_url", { required: false, minLength: 2 })} type="text" className='form-control' />
                 {errors.img_url && <div className='text-danger'>Enter valid url (min 2 chars) </div>}
                 
-                {/* <label>Role:</label>
-                <input defaultValue="client" {...register("role", { required: true, minLength: 2 })} type="text" className='form-control' />
-                {errors.role && <div className='text-danger'>Enter valid role </div>}
-                
-                <label>Active:</label>
-                <input defaultValue="true" {...register("active", { required: true, minLength: 2 })} type="text" className='form-control' />
-                {errors.active && <div className='text-danger'>you must choose </div>} */}
-                
+               
                 <label>City address:</label>
                 <input {...register("address.city", { required: true, minLength: 2 })} type="text" className='form-control' />
                 {errors.address?.city && <div className='text-danger'>Enter valid address (min 2 chars) </div>}
@@ -92,7 +68,6 @@ export default function AddClientForm(props) {
                
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Add new</button>
-                    <Link className='btn btn-danger' to="/admin/clients">Back</Link>
                 </div>
             </form>
         </div>

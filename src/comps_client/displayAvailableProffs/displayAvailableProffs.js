@@ -4,110 +4,205 @@ import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
 import ProfInfo from '../profinfo';
 import './displayAvailableProffs.css';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
+import RangeSlider from './priceRange';
+import { MDBBtn, MDBIcon, MDBInput, MDBInputGroup } from 'mdb-react-ui-kit';
+import { width } from '@mui/system';
 
 export default function DisplayAvailableProffs(props) {
     const [query] = useSearchParams();
-    // const [selectedCategory, setSelectedCategory] = useState(null);
-    // const [startDate, setStartDate] = useState(null);
-    // const [endDate, setEndDate] = useState(null);
     const [profList, setprofList] = useState([]);
     const [filteredProfList, setfilteredProfList] = useState([]);
-    const [activeLink, setActiveLink] = useState('');
+    const [activeLink, setActiveLink] = useState('Singer');
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [sortedProfessionals, setSortedProfessionals] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [priceRange, setPriceRange] = useState([0, 100000]);
+    const [selectedLocation, setSelectedLocation] = useState('');
+
+
     useEffect(() => {
         doApi();
     }, [query]);
+
+
     const doApi = async () => {
-        // setStartDate(query.get("startDate"));
-        // setEndDate(query.get("endDate"));
-        // setStartDate(props.startDate);
-        // setEndDate(props.endDate);
         let url = API_URL + "/clients/professionals-available?startDate=" + props.startDate + "&endDate=" + props.endDate;
+
         try {
             let resp = await doApiMethod(url, "GET");
-            // console.log(resp.data);
-            // console.log("prof list:");
             setprofList(resp.data);
-            // console.log("filtered prof list:")
-            setfilteredProfList(resp.data.filter((prof) => prof.category === "singer"));
-            // console.log(filteredProfList);
+
+            // Apply location filter if a location is selected
+            let filteredList = resp.data.filter((prof) => prof.category === activeLink);
+            if (selectedLocation) {
+                filteredList = filteredList.filter((prof) => prof.location === selectedLocation);
+            }
+
+            setfilteredProfList(filteredList);
+            setSortedProfessionals(sortProfessionalsByPriceAsc(filteredList));
         }
         catch (err) {
             console.log(err);
-            alert("There problem try come back later");
+            alert("There is a problem. Please try again later.");
         }
-    }
+    };
 
     const onCategoryClick = (category) => {
-        // setSelectedCategory(category);
-        setfilteredProfList(profList.filter((prof) => prof.category === category));
         setActiveLink(category);
+        setSortOrder('asc'); // Reset sort order to ascending when changing categories
+        setSearchQuery('');
+        setSelectedLocation('')
+        // Filter professionals based on the selected category
+        const filteredProfessionals = profList.filter((prof) => prof.category === category);
+
+        // Sort the filtered professionals by price in ascending order
+        const sortedProfessionals = sortProfessionalsByPriceAsc(filteredProfessionals);
+
+        setfilteredProfList(filteredProfessionals);
+        setSortedProfessionals(sortedProfessionals);
+    };
+
+    const sortProfessionalsByPriceAsc = (professionals) => {
+        return [...professionals].sort((a, b) => a.cost - b.cost);
+    };
+    const sortProfessionalsByPriceDesc = (professionals) => {
+        return [...professionals].sort((a, b) => b.cost - a.cost);
+    };
+
+
+
+    const filteredProfessionals = sortedProfessionals.filter((prof) =>
+        prof.name.firstName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (!selectedLocation || prof.area === selectedLocation)
+    );
+
+
+   
+    const handlePriceRangeChange = (newValue) => {
+        setPriceRange(newValue);
+      
+        const filteredProfessionals = filteredProfList.filter((prof) => {
+          return prof.cost >= newValue[0] && prof.cost <= newValue[1];
+        });
+      
+        setSortedProfessionals(sortProfessionalsByPriceAsc(filteredProfessionals));
+      };
+      
+
+
+    const onSortChange = (event) => {
+        const newSortOrder = event.target.value;
+        setSortOrder(newSortOrder);
+        if (newSortOrder === 'asc') {
+            setSortedProfessionals(sortProfessionalsByPriceAsc(filteredProfList));
+        } else {
+            setSortedProfessionals(sortProfessionalsByPriceDesc(filteredProfList));
+        }
+    };
+
+    const availableDatesOfProffInRange = (prof_id) => {
+        const prof = filteredProfList.filter(prof => prof._id == prof_id);
+
+        let availableDates = [];
+        if (prof[0].events) {
+            const eventDates = prof[0].events.map(event => new Date(event.date));
+
+            for (let date = new Date(props.startDate); date <= props.endDate; date.setDate(date.getDate() + 1)) {
+
+                if (!eventDates.some(eventDate => (eventDate.getFullYear() === date.getFullYear()) && (eventDate.getMonth() === date.getMonth()) && (eventDate.getDate() === date.getDate()))) {
+                    let newDate = new Date(date);
+                    availableDates.push(newDate);
+
+                }
+            }
+            console.log("available dates of: " + prof[0].name.firstName + " in range:")
+            console.log(availableDates);
+            return availableDates;
+        }
+        else {
+            return [];
+        }
+
     }
 
-    const availableDatesOfProffInRange=(prof_id)=>{
-        const prof = filteredProfList.filter(prof=>prof._id==prof_id);
-        // const availableDatesInRange = prof[0].
-        let availableDates=[];
-        const eventDates = prof[0].events.map(event => new Date(event.date));
-        // console.log("event dates of: "+prof[0].name.firstName)
-        // console.log(eventDates);
-        // console.log("start date");
-        // console.log(props.startDate);
-        // console.log("end date");
-        // console.log(props.endDate);
-        for (let date = new Date(props.startDate); date <= props.endDate; date.setDate(date.getDate() + 1)) {
-            // console.log("date in loop");
-            // console.log(date);
-            // if (!eventDates.includes(date)) {
-                if (!eventDates.some(eventDate => (eventDate.getFullYear() === date.getFullYear())&&(eventDate.getMonth() === date.getMonth())&&(eventDate.getDate() === date.getDate()))) {
-                let newDate = new Date(date);
-                availableDates.push(newDate);
-                // console.log("current availableDates")
-                // console.log(availableDates)
-            }
-        }
-        console.log("available dates of: "+prof[0].name.firstName+" in range:")
-        console.log(availableDates);
-        return availableDates;
-    }
-    // Filter professionals who have events on every single date within the range
-    // const filteredProfessionals = professionalsWithEvents.filter(professional => {
-    //     const eventDates = professional.events.map(event => event.date.toDateString());
-    //     // console.log(eventDates);
-    //     for (let date = new Date(start); date <= end; date.setDate(date.getDate() + 1)) {
-    //         // console.log(date);
-    //         if (!eventDates.includes(date.toDateString())) {
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // });
-    // console.log(filteredProfessionals);
     return (
         <div className='row'>
-            {/* {props.startDate && props.endDate && <>
-                <h1>start date is: {props.startDate}</h1>
-                <h1>end date is: {props.endDate}</h1>
-            </>} */}
+
             <nav className="nav-links">
 
-                <Link to="#" onClick={() => onCategoryClick('makeup')} className={activeLink === 'makeup' ? 'active' : ''}>MakeUp Artists</Link>
+                <Link to="#" onClick={() => onCategoryClick('Makeup Artist')} className={activeLink === 'Makeup Artist' ? 'active' : ''}>MakeUp Artists</Link>
 
-                <Link to="#" onClick={() => onCategoryClick('photographer')} className={activeLink === 'photographer' ? 'active' : ''}>Photographers</Link>
+                <Link to="#" onClick={() => onCategoryClick('Photographer')} className={activeLink === 'Photographer' ? 'active' : ''}>Photographers</Link>
 
-                <Link to="#" onClick={() => onCategoryClick('hair-stylist')} className={activeLink === 'hair' ? 'active' : ''}>Hair Stylists</Link>
+                <Link to="#" onClick={() => onCategoryClick('Hair Stylist')} className={activeLink === 'Hair Stylist' ? 'active' : ''}>Hair Stylists</Link>
 
                 <Link to="#" onClick={() => onCategoryClick('band')} className={activeLink === 'band' ? 'active' : ''}>Bands</Link>
 
-                <Link to="#" onClick={() => onCategoryClick('singer')} className={activeLink === 'singer' ? 'active' : ''}>Singers</Link>
+                <Link to="#" onClick={() => onCategoryClick('Singer')} className={activeLink === 'Singer' ? 'active' : ''}>Singers</Link>
                 <div
-          className="nav-underline"
-          style={{
-            width: `${100 / 5}%`,
-            transform: `translateX(${activeLink === 'makeup' ? '0%' : activeLink === 'photographer' ? '100%' : activeLink === 'hair-stylist' ? '200%' : activeLink === 'band' ? '300%' : '400%'})`,
-          }}
-        />
+                    className="nav-underline"
+                    style={{
+                        width: `${100 / 5}%`,
+                        transform: `translateX(${activeLink === 'Makeup Artist' ? '0%' : activeLink === 'Photographer' ? '100%' : activeLink === 'Hair Stylist' ? '200%' : activeLink === 'band' ? '300%' : '400%'})`,
+                    }}
+                />
             </nav>
-            {filteredProfList.map((prof) => {let availableDates=availableDatesOfProffInRange(prof._id); console.log("pro info props availabledates:"); console.log(availableDates); return <ProfInfo key={prof._id} item={prof} availableDatesList={availableDates} /> })}
+
+            <MDBInputGroup className='mt-4'>
+                <label>Search Proffesional</label>
+                <MDBInput label='Search' value={searchQuery}
+                    onInput={(e) => setSearchQuery(e.target.value)} />
+                <MDBBtn rippleColor='dark'>
+                    <MDBIcon icon='search' />
+                </MDBBtn>
+            </MDBInputGroup>
+
+            {filteredProfessionals.length > 0 ? (
+                filteredProfessionals.map((prof) => {
+                    let availableDates = availableDatesOfProffInRange(prof._id);
+                    console.log("pro info props availabledates:");
+                    console.log(availableDates);
+                    return <ProfInfo key={prof._id} item={prof} availableDatesList={availableDates} />;
+                })
+
+            ) : (
+                <p>No professionals found in this category.</p>
+            )}
+            <div className='row justify-content-between my-4'>
+                <div className='col-md-5 mb-5'>
+                    <label htmlFor="sortOrder">Sort By Price:</label>
+                    <select id="sortOrder" value={sortOrder} onChange={onSortChange} className='form-control'>
+                        <option value="asc">Low to high</option>
+                        <option value="desc">High to low </option>
+                    </select>
+                </div>
+                <div className='col-md-5'>
+                    <label>Filter by price:</label>
+                    <RangeSlider minValue={0} maxValue={30000} onPriceRangeChange={handlePriceRangeChange} />
+
+                </div>
+                <div className='col-md-6'>
+                <label htmlFor="locationFilter">Filter by location:</label>
+                    <select id="locationFilter" value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)} 
+                    className='form-control'>
+                        <option value="">All Locations</option>
+                        <option value="center">center </option>
+                        <option value="north">north </option>
+                        <option value="south">south </option>
+                        <option value="jerusalem">jerusalem </option>
+                        {/* Add more location options as needed */}
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
     )
 }

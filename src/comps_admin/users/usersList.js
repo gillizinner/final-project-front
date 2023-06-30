@@ -29,7 +29,7 @@ export default function UsersList() {
     return (
         <div className='container'>
             <CheckAdmin />
-            {/* <CheckAdminComp /> */}
+           
             <Link to="/admin/addUser" className='btn btn-success'>Add new User</Link>
             <h1>List of users in systems</h1>
             <table className='table table-striped table-hover'>
