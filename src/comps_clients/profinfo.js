@@ -1,9 +1,11 @@
 import React,{useContext, useRef} from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import { AppContext } from '../appContext';
+import { Link, useParams } from 'react-router-dom';
 export default function ProInfo(props) {
         const {addToSelectedProffs} = useContext(AppContext);
         const selectRef=useRef();
+        const params = useParams();
     const onBookClick=()=>{
         const selectedDate = new Date(selectRef.current.value);
         if(selectRef.current.value!="View Available Dates:"){
@@ -74,6 +76,7 @@ export default function ProInfo(props) {
                                         <div>
                                             {/* <MDBBtn outline color="dark" rounded size="sm">+ Follow</MDBBtn> */}
                                             <MDBBtn outline color="dark" rounded size="sm" className="mx-1">See profile</MDBBtn>
+                                            {/* <Link outline color="dark" rounded size="sm" className="mx-1" to={`/proffesionals/proffesionalProfile/${props.item._id}`}>See profile</Link> */}
                                             {/* <MDBBtn outline color="dark" floating size="sm"><MDBIcon fas icon="comment" /></MDBBtn> */}
                                         </div>
                                     </div>

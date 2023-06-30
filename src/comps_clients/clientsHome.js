@@ -6,10 +6,12 @@ import { TOKEN_NAME } from '../services/apiService';
 import { useEffect, useState } from 'react';
 import { API_URL, doApiMethod } from '../services/apiService';
 import NavbarGeneralClient from '../comps_general/navbarGeneralClient';
+import { useNavigate } from 'react-router-dom'
 
 
 function ClientsHome() {
   const [info, setInfo] = useState({});
+  const nav = useNavigate();
 
   useEffect(() => {
     doApiInit();
@@ -47,7 +49,7 @@ const doApiInit = async () => {
         </Container>
       </Navbar> */}
       <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
-      <button className='btn btn-primary m-4'>Lets start Creating your Event!</button>
+      <button className='btn btn-primary m-4' onClick={() => nav(`/client/eventpicker`)}>Lets start Creating your Event!</button>
     </div>
   );
 }

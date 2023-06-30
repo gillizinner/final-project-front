@@ -11,7 +11,7 @@ export default function NavbarGeneralClient() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/clients/clientProfile/:id">My profile</Nav.Link>
-              <Nav.Link href="/client/datepicker">Create event</Nav.Link>
+              <Nav.Link href="/client/eventPicker">Create event</Nav.Link>
               <Nav.Link href="/clients/eventsClient">My events</Nav.Link>
             </Nav>
           </Navbar.Collapse>
