@@ -4,8 +4,6 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HeaderAdmin from './comps_admin/headerAdmin/headerAdmin';
-import { clientRoutes } from './comps_client/clientRoutes'
-import DatePicker from './comps_client/datePicker';
 import {adminRoutes} from './comps_admin/adminRoutes'
 import LoginUser from './general_comps.js/homePage';
 import { usersRoutes } from './comps_users/usersRoutes';
@@ -29,7 +27,7 @@ function App() {
       {usersRoutes()}
       {clientsRoutes()}
       {ProffesionalsRoutes()}
-      {clientRoutes()}
+      {/* {clientRoutes()} */}
     </Routes>
     {/* <LoginUser/> */}
   </BrowserRouter>
