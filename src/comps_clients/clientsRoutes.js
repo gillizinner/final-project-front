@@ -3,17 +3,20 @@ import { Route } from "react-router-dom"
 // import LoginUser from './loginUser'
 import ClientProfile from './clientProfile'
 import ClientsHome from './clientsHome'
+import EventsClient from './eventsClient'
 import EditClient from './editClient'
 import EventPicker from './eventPicker'
 import DatePicker from './datePicker'
 import EndMessage from './confirmMessage'
 import DisplayAvailableProffs from './displayAvailableProffs/displayAvailableProffs'
+
 export const clientsRoutes = () => {
     return (
         <>
             {/* <Route path="/users/login" element={<LoginUser/>} /> */}
             <Route path="/clients/clientProfile/:id" element={<ClientProfile/>} />
             <Route path="/clients/home" element={<ClientsHome/>} />
+            <Route path="/clients/eventsClient" element={<EventsClient/>} />
             <Route path="/clients/editClient/:id" element={<EditClient/>} />
             <Route path="/client/eventpicker" element={<EventPicker />}></Route>
             <Route path="/client/datepicker/:event/:location" element={<DatePicker/>}/>
