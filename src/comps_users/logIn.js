@@ -1,8 +1,10 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
-import { doApiMethod, API_URL, TOKEN_NAME } from '../../services/apiService';
-export default function LoginAdmin() {
+import { doApiMethod, API_URL, TOKEN_NAME } from '../services/apiService';
+
+
+export default function LoginUser() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const nav = useNavigate();

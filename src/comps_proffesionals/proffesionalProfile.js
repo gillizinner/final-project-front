@@ -68,11 +68,11 @@ export default function ProffesionalProfile() {
                                             </MDBCol>
                                         </MDBRow>
 
-                                        {/* <div className="d-flex justify-content-start">
+                                        <div className="d-flex justify-content-start">
                                             <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
                                             <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
                                             <a href="#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
-                                        </div> */}
+                                        </div>
                                     </MDBCardBody>
                                 </MDBCol>
                             </MDBRow>

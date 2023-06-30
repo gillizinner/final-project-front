@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginAdmin from './loginAdmin/loginAdmin'
+import LoginAdmin from '../comps_users/logIn.js'
 import { Route } from "react-router-dom"
 import ClientsList from './clients/clientsList'
 import ProffesionalsList from './proffesionals/proffesionalsList'
