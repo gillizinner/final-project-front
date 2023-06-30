@@ -1,0 +1,23 @@
+import React from 'react'
+import { Nav, Navbar, Container } from 'react-bootstrap'
+
+export default function NavbarGeneralProffesionel() {
+  return (
+    <div>
+         <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="/proffesionals/home">Home</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/proffesionals/proffesionalProfile/:id">My profile</Nav.Link>
+              {/* לבדוק איפה ההודעות של האיש מקצוע */}
+              {/* <Nav.Link href="/client/datepicker">My messages</Nav.Link> */}
+              <Nav.Link href="/proffesionals/eventsProffesional">My events</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  )
+}

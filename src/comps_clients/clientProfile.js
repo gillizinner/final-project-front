@@ -6,6 +6,7 @@ import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfile from '../comps_users/userProfile';
 import UserProfileInfo from '../comps_users/userProfileInfo';
+import NavbarGeneralClient from '../comps_general/navbarGeneralClient';
 
 export default function ClientProfile() {
     const [info, setInfo] = useState({});
@@ -15,9 +16,8 @@ export default function ClientProfile() {
         doApiInit();
     }, [])
 
-
     const doApiInit = async () => {
-        let url = API_URL + "/clients/single/" + params["id"];
+        let url = API_URL + "/clients/myInfo";
         try {
             let resp = await doApiMethod(url, "GET");
             console.log(resp.data);
@@ -31,6 +31,7 @@ export default function ClientProfile() {
 
     return (
         <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
+            <NavbarGeneralClient/>
             <MDBContainer className="py-5 h-100">
                 <MDBRow className="justify-content-center align-items-center h-100">
                     <MDBCol lg="6" className="mb-4 mb-lg-0">
@@ -48,7 +49,7 @@ export default function ClientProfile() {
                                     <MDBCardBody className="p-4">
                                         <MDBTypography tag="h6">My profile <button className='btn btn-warning'>Edit profile</button></MDBTypography>
                                         <hr className="mt-0 mb-4" />
-                                        <UserProfileInfo info={info}/>
+                                        <UserProfileInfo info={info} />
                                         <br />
                                         <MDBRow className="pt-1">
                                             <MDBCol size="4" className="mb-3">

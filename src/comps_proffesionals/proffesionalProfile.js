@@ -6,6 +6,7 @@ import { API_URL, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfile from '../comps_users/userProfile';
 import UserProfileInfo from '../comps_users/userProfileInfo';
+import NavbarGeneralProffesionel from '../comps_general/navbarGeneralProffesionel';
 
 export default function ProffesionalProfile() {
     const [info, setInfo] = useState({});
@@ -17,7 +18,7 @@ export default function ProffesionalProfile() {
 
 
     const doApiInit = async () => {
-        let url = API_URL + "/proffesionals/single/" + params["id"];
+        let url = API_URL + "/proffesionals/myInfo";
         try {
             let resp = await doApiMethod(url, "GET");
             console.log(resp.data);
@@ -31,6 +32,7 @@ export default function ProffesionalProfile() {
 
     return (
         <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
+            <NavbarGeneralProffesionel/>
             <MDBContainer className="py-5 h-100">
                 <MDBRow className="justify-content-center align-items-center h-100">
                     <MDBCol lg="6" className="mb-4 mb-lg-0">
