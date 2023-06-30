@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DisplayAvailableProffs from './displayAvailableProffs/displayAvailableProffs';
 import DisplayChosenProffs from './displayChosenProffs';
 import { AppContext } from '../appContext';
+import { useParams } from 'react-router-dom';
+
 
 const DateRangeForm = () => {
+    const { event, location } = useParams();
     const [selectedDates, setSelectedDates] = useState([]);
     const [selectedProffs, setSelectedProffs] = useState([]);
     const nav = useNavigate();
+
+    useEffect(()=>showSelectedProffs(),[selectedProffs])
+    const showSelectedProffs=()=>{
+        console.log("selected proffs");
+        console.log(selectedProffs);
+    }
 
     const handleDateChange = (date) => {
         setSelectedDates(date);
@@ -37,11 +46,13 @@ const DateRangeForm = () => {
 
     return (
         <AppContext.Provider value={{
-            selectedProffs, addToSelectedProffs, removeOfSelectedProffs
+            selectedProffs, addToSelectedProffs, removeOfSelectedProffs, event, location
         }}>
             <div className='container'>
                 <div className='row justify-content-between my-5'>
                     <div className='col-5'>
+                        {/* <h2>Selected Event: {event}</h2>
+                        <h2>Location: {location}</h2> */}
                         <h3>Select Date or Date Range</h3>
                         <Calendar
                             selectRange={selectedDates.length === 0}
@@ -65,7 +76,7 @@ const DateRangeForm = () => {
                         )}
                     </div>
                     <div className='col-6'>
-                        {selectedDates.length > 0 && (<DisplayChosenProffs />)}
+                        {selectedProffs.length > 0 && (<DisplayChosenProffs />)}
                     </div>
                 </div>
                 {selectedDates.length > 0 && (<DisplayAvailableProffs startDate={selectedDates[0]} endDate={selectedDates[1]} />)}
