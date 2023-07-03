@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
 import ProfInfo from '../profinfo';
 import './displayAvailableProffs.css';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { AppContext } from '../../appContext';
 
 import RangeSlider from './priceRange';
 import { MDBBtn, MDBIcon, MDBInput, MDBInputGroup } from 'mdb-react-ui-kit';
@@ -21,6 +22,8 @@ export default function DisplayAvailableProffs(props) {
     const [searchQuery, setSearchQuery] = useState('');
     const [priceRange, setPriceRange] = useState([0, 100000]);
     const [selectedLocation, setSelectedLocation] = useState('');
+    const { event } = useContext(AppContext);
+
 
 
     useEffect(() => {
@@ -33,14 +36,15 @@ export default function DisplayAvailableProffs(props) {
 
         try {
             let resp = await doApiMethod(url, "GET");
-            setprofList(resp.data);
-
+            let filteredListByEventType = (resp.data).filter((prof) => prof.event_type.includes(event));
+            setprofList(filteredListByEventType);
             // Apply location filter if a location is selected
-            let filteredList = resp.data.filter((prof) => prof.category === activeLink);
+            let filteredList = filteredListByEventType.filter((prof) => prof.category === activeLink);
             if (selectedLocation) {
                 filteredList = filteredList.filter((prof) => prof.location === selectedLocation);
             }
-
+            // Apply type of ocassion filter
+            // filteredList = filteredList.filter((prof) => prof.event_type.includes(event));
             setfilteredProfList(filteredList);
             setSortedProfessionals(sortProfessionalsByPriceAsc(filteredList));
         }

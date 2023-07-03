@@ -11,7 +11,11 @@ export default function EditProffesional(props) {
     const nav = useNavigate();
     const params = useParams();
     const watchPassword = useWatch({ control, name: "password", defaultValue: "" });
-
+    const watchEventTypes = useWatch({
+        control,
+        name: 'event_type',
+        defaultValue: [],
+    });
 
 
     // בקשה בהתחלה שתשלוף את כל המידע של הטופס
@@ -56,26 +60,27 @@ export default function EditProffesional(props) {
         delete bodyFormData.firstName;
         delete bodyFormData.lastName;
         // Create an array to store the selected event types
-        const selectedEventTypes = [];
+        // const selectedEventTypes = [];
+        bodyFormData.event_type = Array.isArray(watchEventTypes) ? watchEventTypes : [watchEventTypes];
 
         // Iterate over each event_type in info
-        info.event_type.forEach((eType) => {
-            // Check if the checkbox for the current event_type is checked
-            if (bodyFormData.event_type.includes(eType)) {
-                // Add the checked event_type to the selectedEventTypes array
-                selectedEventTypes.push(eType);
-            }
-            // Delete the property from bodyFormData
-            delete bodyFormData[eType];
-        });
+        // info.event_type.forEach((eType) => {
+        //     // Check if the checkbox for the current event_type is checked
+        //     if (bodyFormData.event_type.includes(eType)) {
+        //         // Add the checked event_type to the selectedEventTypes array
+        //         selectedEventTypes.push(eType);
+        //     }
+        //     // Delete the property from bodyFormData
+        //     delete bodyFormData[eType];
+        // });
 
         // Assign the selected event types array to event_type property in bodyFormData
-        bodyFormData.event_type = selectedEventTypes;
+        // bodyFormData.event_type = selectedEventTypes;
 
         // Remove individual event_type properties from bodyFormData
-        info.event_type.forEach((eType) => {
-            delete bodyFormData[eType];
-        });
+        // info.event_type.forEach((eType) => {
+        //     delete bodyFormData[eType];
+        // });
 
         delete bodyFormData.confirmPassword;
 
@@ -145,7 +150,7 @@ export default function EditProffesional(props) {
                 <input defaultValue={info.cost} {...register("cost", { required: true, minLength: 2 })} type="number" className='form-control' />
                 {errors.cost && <div className='text-danger'>Enter valid cost (min 0) </div>}
                 <label>Event type:</label>
-                {['wedding'].map((eType) => (
+                {['Wedding','Bar-Miztva','Bat-Mitzva','Brit','Engagement'].map((eType) => (
                     <span key={eType}>
                         <div>
                             <input

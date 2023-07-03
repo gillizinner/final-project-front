@@ -151,7 +151,7 @@ export default function EventsClient() {
     <div>
       <NavbarGeneralClient/>
       <h2 className="text-center m-4">My events</h2>
-      <MDBRow className="container align-items-center justify-contect-center row-cols-1 row-cols-md-2 g-4">
+      <MDBRow className="container align-items-center justify-contect-center row-cols-1 row-cols-md-3 g-4">
         {info.events?.length > 0 ? (
           info.events?.map((item, index) => (
             <MDBCol key={item._id}>
