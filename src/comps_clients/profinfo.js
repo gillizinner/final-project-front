@@ -1,15 +1,15 @@
-import React,{useContext, useRef} from 'react';
+import React, { useContext, useRef } from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import { AppContext } from '../appContext';
 import { Link, useParams } from 'react-router-dom';
 export default function ProInfo(props) {
-        const {addToSelectedProffs} = useContext(AppContext);
-        const selectRef=useRef();
-        const params = useParams();
-    const onBookClick=()=>{
+    const { addToSelectedProffs } = useContext(AppContext);
+    const selectRef = useRef();
+    const params = useParams();
+    const onBookClick = () => {
         const selectedDate = new Date(selectRef.current.value);
-        if(selectRef.current.value!="View Available Dates:"){
-            addToSelectedProffs({proff:props.item,date:selectedDate});
+        if (selectRef.current.value != "View Available Dates:") {
+            addToSelectedProffs({ proff: props.item, date: selectedDate });
         }
     }
     return (
@@ -17,7 +17,7 @@ export default function ProInfo(props) {
             <MDBContainer>
                 <MDBRow className="justify-content-center">
                     <MDBCol md="12" lg="12" xl="10" className="mt-5">
-                        <MDBCard style={{ borderRadius: '15px', backgroundColor: 'rgb(242, 234, 234)' }}>
+                        <MDBCard style={{ borderRadius: '15px', backgroundColor: 'rgb(242, 234, 234)' }} className='h-100' >
                             <MDBCardBody className="p-4 text-black">
                                 {/* <div>
                                     <MDBTypography tag='h6'>{props.item.name.firstName} {props.item.name.lastName}</MDBTypography>
@@ -75,7 +75,11 @@ export default function ProInfo(props) {
                                         </div>
                                         <div>
                                             {/* <MDBBtn outline color="dark" rounded size="sm">+ Follow</MDBBtn> */}
-                                            <MDBBtn outline color="dark" rounded size="sm" className="mx-1">See profile</MDBBtn>
+                                            {props.item.ig_url ? <div className="d-flex justify-content-start">
+                                            <MDBBtn outline color="dark" rounded size="sm" className="mx-1"><a href={props.item.ig_url} target='blank' style={{color:'black'}}><MDBIcon fab icon="instagram me-3" size="lg" /> My Instagram</a></MDBBtn>
+                                                {/* <a href={props.item.ig_url} target='blank'><MDBIcon fab icon="instagram me-3" size="lg" /> My Instegram</a> */}
+                                            </div> : ""}
+                                            
                                             {/* <Link outline color="dark" rounded size="sm" className="mx-1" to={`/proffesionals/proffesionalProfile/${props.item._id}`}>See profile</Link> */}
                                             {/* <MDBBtn outline color="dark" floating size="sm"><MDBIcon fas icon="comment" /></MDBBtn> */}
                                         </div>
@@ -83,7 +87,7 @@ export default function ProInfo(props) {
                                 </div>
                                 <hr />
                                 {/* <MDBCardText>52 comments</MDBCardText> */}
-                                <MDBBtn onClick={()=>onBookClick()} color="dark" rounded block size="lg">
+                                <MDBBtn onClick={() => onBookClick()} color="dark" rounded block size="lg">
                                     <MDBIcon far icon="clock me-2" /> Book now
                                 </MDBBtn>
                             </MDBCardBody>

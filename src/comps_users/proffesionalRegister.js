@@ -115,6 +115,10 @@ export default function AddProffesionalForm(props) {
                 {errors.img_url && <div className='text-danger'>Enter valid url   (min 2 chars) </div>}
                 <label hidden>Role:</label>
                 <input hidden value="proffesional" {...register("role", {})} type="text" className='form-control' />
+                <label>Instegram Link:</label>
+                <input {...register("ig_url", { required: false, minLength: 2 })} type="text" className='form-control' />
+                {errors.ig_url && <div className='text-danger'>Enter valid link (min 2) </div>}
+
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Add</button>
                     

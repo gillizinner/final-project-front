@@ -92,16 +92,20 @@ export default function DisplayAvailableProffs(props) {
       };
       
 
-
     const onSortChange = (event) => {
         const newSortOrder = event.target.value;
         setSortOrder(newSortOrder);
+      
+        let sortedProfessionals = [];
         if (newSortOrder === 'asc') {
-            setSortedProfessionals(sortProfessionalsByPriceAsc(filteredProfList));
+          sortedProfessionals = sortProfessionalsByPriceAsc(filteredProfessionals);
         } else {
-            setSortedProfessionals(sortProfessionalsByPriceDesc(filteredProfList));
+          sortedProfessionals = sortProfessionalsByPriceDesc(filteredProfessionals);
         }
-    };
+      
+        setSortedProfessionals(sortedProfessionals);
+      };
+      
 
     const availableDatesOfProffInRange = (prof_id) => {
         const prof = filteredProfList.filter(prof => prof._id == prof_id);

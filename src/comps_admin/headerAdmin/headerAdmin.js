@@ -1,47 +1,26 @@
+
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { TOKEN_NAME } from '../../services/apiService';
-import './headerAdmin.css';
+import { Nav, Navbar, Container } from 'react-bootstrap'
+import Logout from '../../comps_general/logout'
 
-export default function HeaderAdmin() {
-  const nav = useNavigate();
-
-
-  const onLogOut = () => {
-    // מחיקת טוקן
-    if (window.confirm("Are you sure you want to logout ?")) {
-      localStorage.removeItem(TOKEN_NAME)
-      // להעביר לעמוד לוג אין
-      nav("/admin")
-    }
-  }
+export default function NavbarAdmin() {
   return (
-    <header className='container-fluid'>
-      <div className='container'>
-        <div>
-          LOGO
-        </div>
-        <nav>{localStorage[TOKEN_NAME] ?
-          <ul className='nav'>
-            <li>
-              <Link to="/admin/users">Users</Link>
-            </li>
-            <li>
-              <Link to="/admin/clients">Clients</Link>
-            </li>
-            <li>
-              <Link to="/admin/proffesionals">Proffesionals</Link>
-            </li>
-            <li>
-              <Link to="/admin/events">Events</Link>
-            </li>
-          </ul> : <ul></ul>}
-          <div>
-            {localStorage[TOKEN_NAME] ? <button className='btn btn-danger' onClick={() => onLogOut()}>Log out</button> : <Link to="/admin" className='btn btn-dark'>Log in page</Link>}
-          </div>
-        </nav>
-      </div>
-    </header>
-
+    <div>
+        <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#">Home</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/admin/users">Users</Nav.Link>
+              <Nav.Link href="/admin/clients">Clients</Nav.Link>
+              <Nav.Link href="/admin/proffesionals">Proffesionals</Nav.Link>
+              <Nav.Link href="/admin/events">Events</Nav.Link>
+            </Nav>
+            <Logout/>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
   )
 }

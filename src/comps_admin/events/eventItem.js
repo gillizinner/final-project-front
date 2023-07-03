@@ -36,9 +36,9 @@ export default function EventItem(props) {
             <td>{item.client_id.name.firstName}</td>
             <td>{item.client_id.name.lastName}</td>
 
-            <td>
+            {/* <td>
                 <button className='badge bg-danger'>Del</button>
-            </td>
+            </td> */}
         </tr>
     )
 }
