@@ -22,9 +22,9 @@ export const clientsRoutes = () => {
             <Route path="/clients/home" element={<ClientsHome />} />
             <Route path="/clients/eventsClient" element={<EventsClient />} />
             <Route path="/clients/editClient/:id" element={<EditClient />} />
-            <Route path="/client/eventpicker" element={<EventPicker />}></Route>
-            <Route path="/client/datepicker/:event/:location" element={<DatePicker />} />
-            <Route path="/client/eventComfirmation" element={<EndMessage />}></Route>
+            <Route path="/client/eventpicker" element={<><NavbarGeneralClient /><EventPicker /></>}></Route>
+            <Route path="/client/datepicker/:event/:location" element={<><NavbarGeneralClient /><DatePicker /></>} />
+            <Route path="/client/eventComfirmation" element={<><NavbarGeneralClient /><EndMessage /></>}></Route>
             <Route path="/client/showAvailableProffesionals" element={<DisplayAvailableProffs />} />
             {/* <Route path="/client/showAvailableProffesionalDates/:id" element={<DisplayAvailableDatesOfProff />} /> */}
             {/* <Route path="/users/userProfile/:id" element={<UserProfile/>} /> */}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
-import { doApiMethod, API_URL, TOKEN_NAME } from '../services/apiService';
+import { doApiMethod, API_URL, TOKEN_NAME, MY_INFO } from '../services/apiService';
 
 
 export default function LoginUser() {
@@ -15,6 +15,19 @@ export default function LoginUser() {
     doApiForm(bodyData);
   }
 
+  const doClientsMyInfoApi = async () => {
+    let url = API_URL + "/clients/myInfo"
+    try {
+      let resp = await doApiMethod(url, "GET");
+      console.log(resp.data);
+      // לשמור את המידע על המשתמש
+      localStorage.setItem(MY_INFO, JSON.stringify(resp.data));
+    }
+    catch (err) {
+      console.log(err.response);
+      alert("User or password worng, or service down");
+    }
+  }
   const doApiForm = async (bodyData) => {
     let url = API_URL + "/users/login"
     try {
@@ -27,6 +40,7 @@ export default function LoginUser() {
         nav("/admin/clients")
       }
       else if (resp.data.user.role == "client") {
+        doClientsMyInfoApi();
         nav("/clients/home")
       }
       else if(resp.data.user.role == "proffesional") {

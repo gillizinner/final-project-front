@@ -92,7 +92,7 @@ export default function AddProffesionalForm(props) {
                 <input {...register("cost", { required: true, minLength: 2 })} type="number" className='form-control' />
                 {errors.cost && <div className='text-danger'>Enter valid cost (min 0) </div>}
                 <label>Event type:</label>
-                {['wedding'].map((eType) => (
+                {['Wedding','Bar-Miztva','Bat-Mitzva','Brit','Engagement'].map((eType) => (
                     <span key={eType}>
                         <div>
                             <input

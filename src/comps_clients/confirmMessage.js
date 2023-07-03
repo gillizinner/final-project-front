@@ -14,6 +14,8 @@ import {
 } from "mdb-react-ui-kit";
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import { MY_INFO } from "../services/apiService";
+// import Payment from "./payment/payment";
 
 
 export default function EndMessage() {
@@ -36,9 +38,10 @@ export default function EndMessage() {
                             >
                                 Your Event Was Created Successfully, MAZAL TOV!
                             </MDBTypography>
-                            <MDBBtn color="light" size="lg" onClick={toggleShow}>
+                            <MDBBtn className="mb-5" color="light" size="lg" onClick={toggleShow}>
                                 Show Event Detailes
                             </MDBBtn>
+                            {/* <Payment/> */}
                             <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
                                 <MDBModalDialog>
                                     <MDBModalContent>
@@ -55,7 +58,7 @@ export default function EndMessage() {
                                                 className="modal-title text-uppercase mb-5"
                                                 id="exampleModalLabel"
                                             >
-                                                Johnatan Miller
+                                               {JSON.parse(localStorage[MY_INFO]).name.firstName}  {JSON.parse(localStorage[MY_INFO]).name.lastName}
                                             </MDBTypography>
                                             <MDBTypography
                                                 tag="h4"

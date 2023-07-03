@@ -1,6 +1,7 @@
 import axios from "axios";
 export const API_URL = "http://localhost:3004"
 export const TOKEN_NAME = "EVENTS_TOKEN"
+export const MY_INFO = "MY_INFO"
 
 
 export const doApiGet = async(_url) => {
