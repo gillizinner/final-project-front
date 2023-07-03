@@ -69,12 +69,12 @@ export default function ProffesionalProfile() {
                                                 <MDBCardText className="text-muted">{info.event_type}</MDBCardText>
                                             </MDBCol>
                                         </MDBRow>
-
-                                        <div className="d-flex justify-content-start">
-                                            <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
-                                            <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
-                                            <a href="#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
-                                        </div>
+                                        {info.ig_url?<div className="d-flex justify-content-start">
+                                            {/* <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
+                                            <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a> */}
+                                            <a href={info.ig_url} target='blank'><MDBIcon fab icon="instagram me-3" size="lg" /> My Instagram</a>
+                                        </div>:"" }
+                                        
                                     </MDBCardBody>
                                 </MDBCol>
                             </MDBRow>
