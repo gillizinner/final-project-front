@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
+import Logout from './logout'
 
 export default function NavbarGeneralClient() {
   return (
@@ -14,6 +15,7 @@ export default function NavbarGeneralClient() {
               <Nav.Link href="/client/eventPicker">Create event</Nav.Link>
               <Nav.Link href="/clients/eventsClient">My events</Nav.Link>
             </Nav>
+            <Logout/>
           </Navbar.Collapse>
         </Container>
       </Navbar>

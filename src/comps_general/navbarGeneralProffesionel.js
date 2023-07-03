@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
+import Logout from './logout'
 
 export default function NavbarGeneralProffesionel() {
   return (
@@ -15,6 +16,7 @@ export default function NavbarGeneralProffesionel() {
               {/* <Nav.Link href="/client/datepicker">My messages</Nav.Link> */}
               <Nav.Link href="/proffesionals/eventsProffesional">My events</Nav.Link>
             </Nav>
+            <Logout/>
           </Navbar.Collapse>
         </Container>
       </Navbar>

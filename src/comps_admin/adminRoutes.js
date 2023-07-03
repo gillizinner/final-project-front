@@ -21,7 +21,7 @@ import AdminEditClient from './clients/adminEditClient'
 export const adminRoutes = () => {
     return (
         <>
-            <Route path="/admin" element={<LoginAdmin />} />
+            {/* <Route path="/admin" element={<LoginAdmin />} /> */}
             {/* <Route path="/admin/:id" element={<UserProfile/>} /> */}
             <Route path="/admin/users" element={<UsersList />} />
             <Route path="/admin/editUsers/:id" element={<EditUser />} />

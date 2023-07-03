@@ -34,7 +34,7 @@ export default function EditProffesional(props) {
             // console.log(info);
             // console.log(info.name);
             // console.log(info.name.firstName);
-            info.event_type.map(eType => console.log(eType));
+            // info.event_type.map(eType => console.log(eType));
         }
         catch (err) {
             console.log(err.response);
@@ -136,7 +136,7 @@ export default function EditProffesional(props) {
                 })} type="password" className='form-control' />
                 {errors.confirmPassword && <div className='text-danger'>Please confirm your password.</div>}
                 <label>Category:</label>
-                <select {...register("category", { required: true })} className='form-control' >
+                <select defaultValue={info.category} {...register("category", { required: true })} className='form-control' >
                     {['Photographer','Makeup Artist','Hair Stylist','Singer','Band','Event Designer'].map(category => <option key={category} value={category}>{category}</option>)}
                 </select>
                 {errors.category && <div className='text-danger'>Choose area </div>}
@@ -169,7 +169,11 @@ export default function EditProffesional(props) {
                 {errors.img_url && <div className='text-danger'>Enter valid url   (min 2 chars) </div>}
                 <label hidden>Role:</label>
                 <input hidden value={info.role} {...register("role", {})} type="text" className='form-control' />
-                <img src={info.img_url} alt="img" height="100" />
+                <img src={info.img_url} alt="img" height="100" /><br></br>
+                <label>Instagram Link:</label>
+                <input defaultValue={info.ig_url} {...register("ig_url", { required: false, minLength: 2 })} type="text" className='form-control' />
+                {errors.ig_url && <div className='text-danger'>Enter valid link (min 2) </div>}
+
                 <div className='mt-3'>
                     <button className='btn btn-success me-5'>Update</button>
                     {props.doApi ?
