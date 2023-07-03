@@ -176,9 +176,9 @@ const EventPicker = () => {
                         </div>
                         <div className="d-grid gap-3">
                             <MDBBtn
-                                color={selectedEvent === 'wedding' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Wedding' ? 'primary' : 'light'}
                                 onClick={handleEventChange}
-                                value="wedding"
+                                value="Wedding"
                             >
                                 <MDBIcon icon="glass-cheers" className="me-2" />
                                 Wedding
@@ -216,13 +216,18 @@ const EventPicker = () => {
                                 Engagement
                             </MDBBtn>
                         </div>
-                        <MDBInput
-                            type="text"
+                        <select
                             id="location"
                             label="Event Location"
-                            value={location}
-                            onChange={handleLocationChange}
-                        />
+                            className='form-control mt-4'
+                            onChange={handleLocationChange}>
+                            <option>Choose a location</option>
+                            {cities.map((city) => (
+                                <option key={city} value={city}>
+                                    {city}
+                                </option>
+                            ))}
+                        </select>
                         {errorMessage && (
                             <div className="text-center mt-2 text-danger">{errorMessage}</div>
                         )}
@@ -232,50 +237,7 @@ const EventPicker = () => {
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
-
-//         <MDBContainer>
-//             <MDBRow className="justify-content-center">
-//                 <MDBCol md="6">
-//                     <div className="text-center mb-4">
-//                         <h4>Pick an Event Type</h4>
-//                     </div>
-//                     <div className="d-grid gap-3">
-//                         <MDBBtn
-//                             color={selectedEvent === 'wedding' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="wedding"
-//                         >
-//                             <MDBIcon icon="glass-cheers" className="me-2" />
-//                             Wedding
-//                         </MDBBtn>
-                       
-                      
-//                     </div>
-                    
-
-
-//                     <select  
-//                         id="location"
-//                         label="Event Location"
-//                         className='form-control mt-4'
-//                         onChange={handleLocationChange}>
-//                             <option>Choose a location</option>
-//                         {cities.map((city) => (
-//                             <option key={city} value={city}>
-//                                 {city}
-//                             </option>
-//                         ))}
-//                     </select>
-//                     {errorMessage && (
-//                         <div className="text-center mt-2 text-danger">{errorMessage}</div>
-//                     )}
-//                     <div className="text-center mt-4">
-//                         <MDBBtn onClick={handleProfessionalsClick}>Choose Your Professionals</MDBBtn>
-//                     </div>
-//                 </MDBCol>
-//             </MDBRow>
-
-        </MDBContainer>
+        </MDBContainer >
     );
 };
 
