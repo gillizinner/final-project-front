@@ -92,12 +92,13 @@ export default function EndMessage() {
                                                 <p className="fw-bold mb-0">Location:</p>
                                                 <p className="text-muted mb-0">{eventDetailes.location}</p>
                                             </div>
+                                            {console.log(eventDetailes.proffesionals)}
                                             <ul>
                                                 {eventDetailes.proffesionals.length > 0 && <p className="fw-bold mb-0">Proffesional List:</p>}
                                                 {eventDetailes?.proffesionals.map(item =>
-                                                    <li>
+                                                    <li key={item._id}>
                                                         <div className="d-flex justify-content-between">
-                                                            <p className="fw-bold mb-0">{item.firstName} {item.lastName}</p>
+                                                            <p className="fw-bold mb-0">{item.name?.firstName} {item.name?.lastName}</p>
                                                             <p className="text-muted mb-0">{item.category}</p>
                                                         </div>
                                                     </li>)}

@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
 import UserItem from './userItem';
 import CheckAdmin from '../checkAdmin';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import PageNav from '../../comps_general/pageNav';
+
 export default function UsersList() {
     const [ar, setAr] = useState([]);
+    const [querys] = useSearchParams();
+    let perPage = querys.get("perPage") || 10;
 
     useEffect(() => {
-        doApi(); 
-    }, [])
+        doApi();
+    }, [querys.get("page")])
 
     const doApi = async () => {
-        let url = API_URL + "/users/usersList";
+
+        let page = querys.get("page") || 1;
+        let url = API_URL + "/users/usersList/?page=" + page;
         try {
             let resp = await doApiMethod(url, "GET");
             console.log("our users: ")
@@ -22,16 +28,15 @@ export default function UsersList() {
             console.log(err);
             alert("there problem ,try again later")
         }
-
     }
-
 
     return (
         <div className='container'>
             <CheckAdmin />
-           
+
             <Link to="/admin/addUser" className='btn btn-success'>Add new User</Link>
             <h1>List of users in systems</h1>
+            <PageNav urlPageApi={API_URL + "/users/count"} perPage={perPage} navToDir="/admin/users?page=" cssClass="btn btn-warning ms-2"></PageNav>
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
