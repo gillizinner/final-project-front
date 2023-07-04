@@ -57,7 +57,7 @@ const DateRangeForm = () => {
         <AppContext.Provider value={{
             selectedProffs, addToSelectedProffs, removeOfSelectedProffs, event, location
         }}>
-            <div className='container'>
+            <div className='container' style={{minHeight:"65vh"}}>
                 <div className='row justify-content-between my-5'>
                     <div className='col-6'>
                         {/* <h2>Selected Event: {event}</h2>

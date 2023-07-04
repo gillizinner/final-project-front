@@ -63,14 +63,14 @@
     position: relative;
     
   }
-  .client-home button{
+  /* .client-home button{
     background: rgb(250, 210, 210);
     color: rgb(134, 80, 80);
     border-radius: 5px;
     border: 1px solid rgb(134, 80, 80) ;
     position: relative;
     padding: 5px;
-}
+} */
 .client-home h1{
     font-size: xx-large;
     background: rgba(255, 255, 255, 0.573);

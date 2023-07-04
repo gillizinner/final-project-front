@@ -1,4 +1,4 @@
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+ .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     --mdb-nav-pills-link-active-bg: #8faedc;
     --mdb-nav-pills-link-active-color: #07357d;
     background-color: #518add;
@@ -6,8 +6,8 @@
 }
 
 .continer-fluid{
-   background:RGB(235 250 255);
-   min-height: 417px;
+   /* background:RGB(235 250 255); */
+   min-height: 75vh;
 }
 
 .nav-pills .nav-link {
@@ -30,4 +30,4 @@
     font-weight: var(--mdb-nav-pills-link-font-weight);
     color: var(--mdb-nav-pills-link-color);
     margin: var(--mdb-nav-pills-margin);
-}
+} 

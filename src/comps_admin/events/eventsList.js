@@ -32,7 +32,7 @@ export default function EventsList() {
 
 
     return (
-        <div className='container-fluid pt-4'>
+        <div className='adminContainer-fluid pt-4'>
             <div className='container'>
                  <CheckAdmin />
             <h2>Events in systems</h2>

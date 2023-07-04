@@ -32,7 +32,7 @@ export default function ProffesionalsList() {
 
 
     return (
-        <div className='container-fluid pt-4'>
+        <div className='adminContainer-fluid pt-4'>
             <div className='container'>
                  <CheckAdmin />
             <Link to="/admin/addProffesional" className='btn btn-info float-end'>Add new proffesional</Link>

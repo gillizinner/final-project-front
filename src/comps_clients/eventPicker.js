@@ -62,12 +62,12 @@ const EventPicker = () => {
     };
 
     return (
-<div className='container-fluid pt-5 mt-4' style={{background:"RGB(235 250 255)",minHeight:"100vh"}}>
+<div className='container-fluid pt-5' style={{background:"RGB(235 250 255)",minHeight:"100vh"}}>
         <MDBContainer >
             <MDBContainer>
                 <MDBRow className="justify-content-center">
                     <MDBCol md="6">
-                        <div className="title text-center mb-4">
+                        <div className="title text-center m-4">
                             <h1>Pick an Event Type</h1>
                         </div>
                         <div className="d-grid gap-3">
