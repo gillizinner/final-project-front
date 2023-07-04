@@ -6,22 +6,31 @@ import DisplayAvailableProffs from './displayAvailableProffs/displayAvailablePro
 import DisplayChosenProffs from './displayChosenProffs';
 import { AppContext } from '../appContext';
 import { useParams } from 'react-router-dom';
+import BasicDatePicker from './datePickerNew';
 
 
 const DateRangeForm = () => {
     const { event, location } = useParams();
     const [selectedDates, setSelectedDates] = useState([]);
+    const [startDate, setstartDate] = useState(null);
+    const [endDate, setendDate] = useState(null);
     const [selectedProffs, setSelectedProffs] = useState([]);
     const nav = useNavigate();
 
-    useEffect(()=>showSelectedProffs(),[selectedProffs])
-    const showSelectedProffs=()=>{
+    useEffect(() => showSelectedProffs(), [selectedProffs])
+    const showSelectedProffs = () => {
         console.log("selected proffs");
         console.log(selectedProffs);
     }
 
     const handleDateChange = (date) => {
         setSelectedDates(date);
+    };
+    const handleStartDateChange = (date) => {
+        setstartDate(date);
+    };
+    const handleEndDateChange = (date) => {
+        setendDate(date);
     };
 
     const clearSelectedDates = () => {
@@ -50,11 +59,11 @@ const DateRangeForm = () => {
         }}>
             <div className='container'>
                 <div className='row justify-content-between my-5'>
-                    <div className='col-5'>
+                    <div className='col-6'>
                         {/* <h2>Selected Event: {event}</h2>
                         <h2>Location: {location}</h2> */}
-                        <h3>Select Date or Date Range</h3>
-                        <Calendar
+                        <h3 className='text-center' style={{ fontSize:"xxx-large",fontFamily:  'Stint Ultra Condensed',color:"rgb(235 188 127)"}}>Select Date or Date Range</h3>
+                    {/* <Calendar
                             selectRange={selectedDates.length === 0}
                             value={selectedDates}
                             onChange={handleDateChange}
@@ -64,24 +73,24 @@ const DateRangeForm = () => {
                             <div>
                                 <h5>Selected Dates:</h5>
                                 <ul>
-                                    {/* {selectedDates.map((date, index) => (
-                                        <li key={index}>{date.toLocaleDateString()}</li>
-                                    ))} */}
                                     <li>Start Date: {selectedDates[0].toLocaleDateString()}</li>
                                     <li>End Date: {selectedDates[1].toLocaleDateString()}</li>
                                 </ul>
                                 <button onClick={clearSelectedDates} className='btn bg-dark text-white'>Clear Selection</button>
 
                             </div>
-                        )}
-                    </div>
-                    <div className='col-6'>
-                        {selectedProffs.length > 0 && (<DisplayChosenProffs />)}
-                    </div>
+                        )} */}
+                    <BasicDatePicker handleStartDateChange={handleStartDateChange} handleEndDateChange={handleEndDateChange} />
+
                 </div>
-                {selectedDates.length > 0 && (<DisplayAvailableProffs startDate={selectedDates[0]} endDate={selectedDates[1]} />)}
+                <div className='col-5'>
+                   <DisplayChosenProffs />
+                </div>
             </div>
-        </AppContext.Provider>
+            {/* {selectedDates.length > 0 && (<DisplayAvailableProffs startDate={selectedDates[0]} endDate={selectedDates[1]} />)} */}
+            {startDate && endDate > 0 && (<DisplayAvailableProffs startDate={startDate} endDate={endDate} />)}
+        </div>
+        </AppContext.Provider >
     );
 };
 

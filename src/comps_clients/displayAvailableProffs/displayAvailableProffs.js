@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useEffect,useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
 import ProfInfo from '../profinfo';
@@ -84,32 +84,32 @@ export default function DisplayAvailableProffs(props) {
     );
 
 
-   
+
     const handlePriceRangeChange = (newValue) => {
         setPriceRange(newValue);
-      
+
         const filteredProfessionals = filteredProfList.filter((prof) => {
-          return prof.cost >= newValue[0] && prof.cost <= newValue[1];
+            return prof.cost >= newValue[0] && prof.cost <= newValue[1];
         });
-      
+
         setSortedProfessionals(sortProfessionalsByPriceAsc(filteredProfessionals));
-      };
-      
+    };
+
 
     const onSortChange = (event) => {
         const newSortOrder = event.target.value;
         setSortOrder(newSortOrder);
-      
+
         let sortedProfessionals = [];
         if (newSortOrder === 'asc') {
-          sortedProfessionals = sortProfessionalsByPriceAsc(filteredProfessionals);
+            sortedProfessionals = sortProfessionalsByPriceAsc(filteredProfessionals);
         } else {
-          sortedProfessionals = sortProfessionalsByPriceDesc(filteredProfessionals);
+            sortedProfessionals = sortProfessionalsByPriceDesc(filteredProfessionals);
         }
-      
+
         setSortedProfessionals(sortedProfessionals);
-      };
-      
+    };
+
 
     const availableDatesOfProffInRange = (prof_id) => {
         const prof = filteredProfList.filter(prof => prof._id == prof_id);
@@ -138,8 +138,42 @@ export default function DisplayAvailableProffs(props) {
 
     return (
         <div className='row'>
+            <div className='row justify-content-between my-4'>
+                <div className='col-md-4 mb-5'>
+                    <label htmlFor="sortOrder">Sort By Price:</label>
+                    <select id="sortOrder" value={sortOrder} onChange={onSortChange} className='form-control'>
+                        <option value="asc">Low to high</option>
+                        <option value="desc">High to low </option>
+                    </select>
+                </div>
+                <div className='col-md-4'>
+                    <label>Filter by price:</label>
+                    <RangeSlider minValue={0} maxValue={30000} onPriceRangeChange={handlePriceRangeChange} />
 
-            <nav className="nav-links">
+                </div>
+                <div className='col-md-4'>
+                    <label htmlFor="locationFilter">Filter by location:</label>
+                    <select id="locationFilter" value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}
+                        className='form-control'>
+                        <option value="">All Locations</option>
+                        <option value="center">center </option>
+                        <option value="north">north </option>
+                        <option value="south">south </option>
+                        <option value="jerusalem">jerusalem </option>
+                        {/* Add more location options as needed */}
+                    </select>
+                </div>
+            </div>
+
+            <MDBInputGroup className='mt-4'>
+                <MDBInput label='Search Proffesional By Name' value={searchQuery}
+                    onInput={(e) => setSearchQuery(e.target.value)} />
+                <MDBBtn rippleColor='dark'>
+                    <MDBIcon icon='search' />
+                </MDBBtn>
+            </MDBInputGroup>
+
+            <nav className="nav-links mt-5">
 
                 <Link to="#" onClick={() => onCategoryClick('Makeup Artist')} className={activeLink === 'Makeup Artist' ? 'active' : ''}>MakeUp Artists</Link>
 
@@ -150,60 +184,27 @@ export default function DisplayAvailableProffs(props) {
                 <Link to="#" onClick={() => onCategoryClick('band')} className={activeLink === 'band' ? 'active' : ''}>Bands</Link>
 
                 <Link to="#" onClick={() => onCategoryClick('Singer')} className={activeLink === 'Singer' ? 'active' : ''}>Singers</Link>
-                <div
+                {/* <div
                     className="nav-underline"
                     style={{
                         width: `${100 / 5}%`,
                         transform: `translateX(${activeLink === 'Makeup Artist' ? '0%' : activeLink === 'Photographer' ? '100%' : activeLink === 'Hair Stylist' ? '200%' : activeLink === 'band' ? '300%' : '400%'})`,
                     }}
-                />
+                /> */}
             </nav>
 
-            <MDBInputGroup className='mt-4'>
-                <label>Search Proffesional</label>
-                <MDBInput label='Search' value={searchQuery}
-                    onInput={(e) => setSearchQuery(e.target.value)} />
-                <MDBBtn rippleColor='dark'>
-                    <MDBIcon icon='search' />
-                </MDBBtn>
-            </MDBInputGroup>
+            <div className='row my-4'>
+                {filteredProfessionals.length > 0 ? (
+                    filteredProfessionals.map((prof) => {
+                        let availableDates = availableDatesOfProffInRange(prof._id);
+                        console.log("pro info props availabledates:");
+                        console.log(availableDates);
+                        return <ProfInfo key={prof._id} item={prof} availableDatesList={availableDates} />;
+                    })
 
-            {filteredProfessionals.length > 0 ? (
-                filteredProfessionals.map((prof) => {
-                    let availableDates = availableDatesOfProffInRange(prof._id);
-                    console.log("pro info props availabledates:");
-                    console.log(availableDates);
-                    return <ProfInfo key={prof._id} item={prof} availableDatesList={availableDates} />;
-                })
-
-            ) : (
-                <p>No professionals found in this category.</p>
-            )}
-            <div className='row justify-content-between my-4'>
-                <div className='col-md-5 mb-5'>
-                    <label htmlFor="sortOrder">Sort By Price:</label>
-                    <select id="sortOrder" value={sortOrder} onChange={onSortChange} className='form-control'>
-                        <option value="asc">Low to high</option>
-                        <option value="desc">High to low </option>
-                    </select>
-                </div>
-                <div className='col-md-5'>
-                    <label>Filter by price:</label>
-                    <RangeSlider minValue={0} maxValue={30000} onPriceRangeChange={handlePriceRangeChange} />
-
-                </div>
-                <div className='col-md-6'>
-                <label htmlFor="locationFilter">Filter by location:</label>
-                    <select id="locationFilter" value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)} 
-                    className='form-control'>
-                        <option value="">All Locations</option>
-                        <option value="center">center </option>
-                        <option value="north">north </option>
-                        <option value="south">south </option>
-                        <option value="jerusalem">jerusalem </option>
-                        {/* Add more location options as needed */}
-                    </select>
-                </div>
+                ) : (
+                    <p>No professionals found in this category.</p>
+                )}
             </div>
 
 
