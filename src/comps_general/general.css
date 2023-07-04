@@ -77,17 +77,15 @@
     width: 400px;
     justify-content: center;
 }
-.client-home p{
-    /* font-size: xx-large; */
+/* .client-home p{
     background: rgba(255, 255, 255, 0.573);
     width: 400px;
-    /* justify-content: center; */
-}
+} */
 
-.client-home {
+/* .client-home {
     position: relative;
     min-height: 450px;
-  }
+  } */
   
   .background-video {
     position: absolute;

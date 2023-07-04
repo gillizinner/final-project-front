@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import './clientProfile.css';
 import { useParams } from 'react-router';
-import { API_URL, doApiMethod } from '../services/apiService';
+import { API_URL, MY_INFO, doApiMethod } from '../services/apiService';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import UserProfile from '../comps_users/userProfile';
 import UserProfileInfo from '../comps_users/userProfileInfo';
@@ -18,39 +18,45 @@ export default function ClientProfile() {
     }, [])
 
     const doApiInit = async () => {
-        let url = API_URL + "/clients/myInfo";
-        try {
-            let resp = await doApiMethod(url, "GET");
-            console.log(resp.data);
-            setInfo(resp.data);
+        if (localStorage[MY_INFO]) {
+            setInfo(JSON.parse(localStorage[MY_INFO]));
         }
-        catch (err) {
-            console.log(err);
-            alert("There problem try come back later");
+        else {
+            let url = API_URL + "/clients/myInfo";
+            try {
+                let resp = await doApiMethod(url, "GET");
+                console.log(resp.data);
+                setInfo(JSON.parse(localStorage[MY_INFO]));
+            }
+            catch (err) {
+                console.log(err);
+                alert("There problem try come back later");
+            }
         }
     }
 
     return (
-        <section className="vh-100" style={{background:"RGB(235 250 255)"}}>
-            <NavbarGeneralClient/>
+        <section className="vh-100" style={{ background: "RGB(235 250 255)" }}>
+            <NavbarGeneralClient />
             <MDBContainer className="py-5 h-100">
                 <MDBRow className="justify-content-center align-items-center h-100">
                     <MDBCol lg="6" className="mb-4 mb-lg-0">
                         <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
                             <MDBRow className="g-0">
-                                <MDBCol md="4" className="text-center" 
-                                    style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem',background:"rgb(250, 244, 238)" }}>
-                                    <MDBCardImage src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPEA8PEA8QEBAOEBEQEBAPEg8QFRAQFREYFhcRExMYHSggGBolGxUVITEiJSkrLi8uFx8zODc4QygtLjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOkA2AMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYCBAcBA//EAD4QAAICAAIHAwoEBQMFAAAAAAABAgMEEQUGEiExQVETIoEjMkJSYXGRobHRFGJywRUWQ4KSVIOyJFOTwuH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AlQAAAAAAAAAAAAAA+uHw87HlXCc30hFy+gHyBNUar4uXGEYfrkvosz7/AMn4n1qvjL7AV4E1fqvi48IRn+ia+jyIrEYedbyshOD6Ti4/DPiB8gAAAAAAAAAAAAAAAAAAAAAAAAAAPph6J2SUIRcpS4JGWEw07Zxrgs5SeSX7v2HQ9C6IhhYZLvTa78+bfRdF7AIrROqUI5SxD25epHdFe9+kWWqmMEowiopcopJGYAAAAYXUxmnGUVJPlJJozAFX0tqlCWcsO9iX/bfmv3P0SoYiiVcnCcXGUeKZ1cjdN6IrxUMnusS7k8t6fR9V7AOag+2Lw06pyrmspReT+69h8QAAAAAAAAAAAAAAAAAAAAG/oPBdvfXW/Nz2p/pW9rx4eIFt1S0Uqa+1kvKXLPf6MOS8ePwLAeI9AAAAAAAAAAACv63aK7avtYrylSz3elDmvDiUM62zmenMF2F9la83Pah+mW9Lw4eAGgAAAAAAAAAAAAAAAAAABatQ6M5XWerGMF45t/RFVLrqHHyVz62/SC+4FnAAAAAAAAAAAAACm6+UZTps9ZSg/DJr6suRWNfF5Kl9Lf8A0l9gKUAAAAAAAAAAAAAAAAAABcdQrO7fHpKMvBxy/YpxPam4rYxGw+FsXH+5b1+4F+AQAAAAAAAAAAAAVTX2zu0R57UpeCjl+5ayg65YrbxGwuFUVH+573+wECAAAAAAAAAAAAAAAAAABnVY4SjKLylFqUX0ae4wAHUtGY2N9ULY+kt69WXNfE2jnurOmPw03Gb8lY+9+SXr/c6BGSaTTzTWaa5oDIAAAAAAAAAxnJJNt5JLNt8kBraTxsaKp2y9Fbl60uS+JzG2xzlKUnnKTcpPq3xZL6zaY/Ez2YPyVb7v55ev9iFAAAAAAAAAAAAAAAAAAAAAABPav6wyw+VdmcqeXN1+7qvYQIA6thsTC2KnXJTi+aefh7z7HK8FjbaJbVU3Fvjlwl71zLLgtcssldVn+apr/i3+4FvBD0ay4Sf9XZ9k4yjl+xsfxrC/6iv/ACQEgCHv1mwkP6u0+kIyl/8ACIxuuWe6mrL81rX/ABX3AtOJxMKoudklGK4tv5FH1g1hliM668408+Ts9/Rewicbjbb5bVs3Nrhnwj7lwRrgAAAAAAAAAAAAAAAAAAAAAAAAASOA0JiL8nCtqL9OfdX3ZYMHqbFZO61y/LWtlf5Pe/kBTjKEG+Cb/Sm/odIw2g8NX5tMW+su8/mSEK1HckkuiSQHL4aOvlww9z/27PsZ/wAJxP8Ap7v8JHTwBy2ejr1xw9y/27Psa84NcU17019TrRhOCluaTXtSYHJgdKxOg8NZ51MU+se6/kQ2M1Ni83Ta4v1bFtL/ACW9fMCnAkcfoPEUb51txXpQ7y8ehHAAAAAAAAAAAAAAAAAAexTbSSbbeSS3tt8ki3aC1V4WYlZviquS/X9gILRWhbsS84x2Yc7Jbl4dWXLRmrlFGTce0mvTms8n+WPBEtGKSSSSS3JLckjIDzI9AAAAAAAAAAAADwiNJ6uUX5yUezse/bgss3+ZcGTAA5rpXQt2Geco7UOVkd68eaZGnWpQTTTWae5p78yqad1VW+zDrLm6uX9nT3AVAHrTTaaaaeTT3ZPozwAAAAAAAAAZ1VubUYpylJ5JLi2YpZ7lvb4Jc2XzVnQaw8VbYvLTXP8App+ivb1A91e0BHDpWWZSufPlD2R9vVk8AAAAAAAAAAAAAAAAAAAAAAAQOsWgI4hOyvKNyXHgpr1Ze3oyiW1yhJxknGUXk0+KfQ6yQGs2g1iIuyteWgv/ACL1X7egFCB61lue5rk+R4AAAAA3tD6PeJujWuHGb6QXH7eIE7qdofaf4mxbk8qk+b5z+xcEY1VqEVGKyjFJJLkkZgAAAAAAAAAAAAAAAAAAAAAAAAAABTtcdEbP/U1rc3lalyfKf3KodZtqU04yScZJpp80zmmmNHvD3TrfDjB9YPh48vADRAAAvmp2j+zp7Vrv3b/dD0V48fEpujMJ211dXryWf6eL+WZ1CEUkktySyXuQGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV/XHR/aU9ql36e974ekvDj4FgMZwTTT3ppp+5gclBtaTwvY3WVepJ5fpe9fIATuouFzssta8yKhH3yebfwS+JdSC1No2MMpc7JSk/jkvoToAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFK16wuVlVqXnxcJfqjvXyb+AJjXKjbwzlzrlGXzyf1AEhoarYw9EelUPi1m/qbp4kegAAAAPHLID0GvhcZCx2KOfkrHXLPd3kk3l7O8jzE4+qrPtJqOVc7XnnurhltS8M0BsgwjYnk01vWa93UwvxMK4SsnJRhXFzlJ8oxWbYH2Bipp8Gt6z8D4wxkHZKpPvQhCb6bM3JLJ9e6wNgGLl7htrqviBkDxM1rtIVQsjTKa7WcJWRrWbk4R4y2VvyA2gQ/8zYXvZytg4uKcLMPiq5vaUmtmEoKUllCTbS3JZs+/wDG8PnJbcmoV9rKxV2uqMNhTzdyjsZ7LTyzz3gSIIyOnsO1DKVknOUoKEaMTKcZRy2tutQ2oJbUd8klvXUxlrDh1KUJO6MoJyynhsXDaW2odzagttuUopKObee4CVBGw07hpSqirc3ds7DUbMs5NqMZSyyhJuMklJptprkbWEx1VztVc1N0WdlZl6FmzGWy/blKL8QNgAAAABpaZq28PfHrVP4pZ/sDcaPQAAAAAARWsej5Ymns4xrlJSUoq2TjFNcJPKMtrLjstZP2cSVMQKpjNVZzdk4ulWWTulKeUo7cZVQUISyXDbrTy35cj54nVWy7tZWQwrniK8bCUu9Psu3UNhwbhnLZcX6vnZroXAICoWarWSnOWzTBzpcY7FtqVDdLr7KEFBKUM23m8uPm8z643Vbb7aFdeGrrtwc8Pm05NzcMo9zY7kVLOWae/pnvLT0PUBT8VqtdZtpOijbzkranNzqXYKv8LFbMc6s+9nmuPm57zZp1ftV1eIUMNV2fZr8NVKbqaTs2n5i7y21KL2dzWXPMs4QFb0noK6+d8sqE8RQoKyUpynh5KEk4V91bUJN798Xx6rLTeqU5yc5xw8E42bFMNqUKHOyl5VvZW5qqebyW+fAt7CAi9HaIVdTpk8orE2X1qqU4KEHe7IQ3Zblmk48OK4GWOw90sRh7K66XXXtdpKdk4T7yccoxVbTyTzWclxfDiSYAr89EXqUMRB1SxKsulONkpqtxtioqKkot91Rr5b8mt2ea+GD1fvocOydMFTTGG25Wy/EyjRGuPbU5KMUthPNNvcizHqAqn8v37KyVNc53WWbcLr88KrJQbVb2V22bhm1PZW/osiSxWCxOWItq7F4i2UI1uyUoxrojwyahLvb5PhlnLnkTKAFYnoPETjh6/I4eNLUtuq2yyyqS2lLZcq1G1yTz2pJbLb3PiSOgNESwrvTulbCyVbhtKtOKjTCDctmKzbcfbwXtJVmQAAAAAAAAH//Z"
-                                        alt="name" className="my-5" style={{ width: '100px',  borderRadius: '50%', border:"solid 2px rgb(235 188 127) " }} fluid />
-                                    <MDBTypography tag="h5" style={{color:"rgb(235 188 127)"}}>{info.name?.firstName} {info.name?.lastName}</MDBTypography>
-                                    <MDBCardText style={{color:"rgb(235 188 127)"}}>{info.role}</MDBCardText>
+                                <MDBCol md="4" className="text-center"
+                                    style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', background: "rgb(250, 244, 238)" }}>
+                                    {info.img_url ? <img src={info.img_url}
+                                        alt="name" className="my-5" style={{ width: '100px', borderRadius: '50%', border: "solid 2px rgb(235 188 127) " }} fluid /> : <img src="data:image/jpeg;base64,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"
+                                            alt="name" className="my-5" style={{ width: '100px', borderRadius: '50%', border: "solid 2px rgb(235 188 127) " }} fluid />}
+                                    <MDBTypography tag="h5" style={{ color: "rgb(235 188 127)" }}>{info.name?.firstName} {info.name?.lastName}</MDBTypography>
+                                    <MDBCardText style={{ color: "rgb(235 188 127)" }}>{info.role}</MDBCardText>
                                     {/* <MDBIcon far icon="edit mb-5" /> */}
-                                    <Link  to={`/clients/editClient/${info._id}`}><MDBIcon far icon="edit mb-5"style={{color:"rgb(235 188 127)"}} /></Link>
+                                    <Link to={`/clients/editClient/${info._id}`}><MDBIcon far icon="edit mb-5" style={{ color: "rgb(235 188 127)" }} /></Link>
                                 </MDBCol>
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
-                                        <MDBTypography className='display-6' tag="h6">My profile 
-                                       {/* <Link className='btn btn-warning' to={`/clients/editClient/${info._id}`}>Edit profile</Link> */}
+                                        <MDBTypography className='display-6' tag="h6">My profile
+                                            {/* <Link className='btn btn-warning' to={`/clients/editClient/${info._id}`}>Edit profile</Link> */}
                                         </MDBTypography>
                                         <hr className="mt-0 mb-4" />
                                         <UserProfileInfo info={info} />

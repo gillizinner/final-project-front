@@ -7,6 +7,8 @@ import DisplayChosenProffs from './displayChosenProffs';
 import { AppContext } from '../appContext';
 import { useParams } from 'react-router-dom';
 import BasicDatePicker from './datePickerNew';
+import Divider from '@mui/material/Divider';
+
 
 
 const DateRangeForm = () => {
@@ -87,6 +89,7 @@ const DateRangeForm = () => {
                    <DisplayChosenProffs />
                 </div>
             </div>
+            {startDate && endDate > 0 &&<Divider />}
             {/* {selectedDates.length > 0 && (<DisplayAvailableProffs startDate={selectedDates[0]} endDate={selectedDates[1]} />)} */}
             {startDate && endDate > 0 && (<DisplayAvailableProffs startDate={startDate} endDate={endDate} />)}
         </div>

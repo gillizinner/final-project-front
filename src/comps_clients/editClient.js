@@ -93,8 +93,8 @@ export default function EditClient(props) {
                 <label>Img url:</label>
                 <input defaultValue={info.img_url} {...register("img_url", { required: false, minLength: 2 })} type="text" className='form-control' />
                 {errors.img_url && <div className='text-danger'>Enter valid url (min 2 chars) </div>}
-                <img src={info.img_url} alt='img' height="100" />
-
+                {info.img_url && <><img src={info.img_url} alt='img' height="100" /><br></br></>}
+                
                 {/* <label>Role:</label>
                 <input defaultValue="client" {...register("role", { required: true, minLength: 2 })} type="text" className='form-control' />
                 {errors.role && <div className='text-danger'>Enter valid role </div>}
@@ -112,7 +112,7 @@ export default function EditClient(props) {
                 {errors.address?.street && <div className='text-danger'>Enter valid address (min 2 chars) </div>}
 
                 <label>Building address:</label>
-                <input defaultValue={info.address.building} {...register("address.building", { required: false, minLength: 2 })} type="number" className='form-control' />
+                <input defaultValue={info.address.building} {...register("address.building", { required: false })} type="number" className='form-control' />
                 {errors.address?.building && <div className='text-danger'>Enter valid address (min 2 chars) </div>}
 
                 <div className='mt-3'>
