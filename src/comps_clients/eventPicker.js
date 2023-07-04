@@ -62,7 +62,7 @@ const EventPicker = () => {
     };
 
     return (
-<div className='container-fluid pt-5' style={{background:"RGB(235 250 255)",minHeight:"100vh"}}>
+<div className='container-fluid pt-5 mt-4' style={{background:"RGB(235 250 255)",minHeight:"100vh"}}>
         <MDBContainer >
             <MDBContainer>
                 <MDBRow className="justify-content-center">
@@ -133,7 +133,7 @@ const EventPicker = () => {
                         )}
 
                         <div className="text-center mt-4">
-                            <MDBBtn onClick={handleProfessionalsClick} style={{background:"RGB(90 206 236)"}}>Choose Your Professionals</MDBBtn>
+                            <MDBBtn onClick={handleProfessionalsClick} className='btn btn-info'>Choose Your Professionals</MDBBtn>
                         </div>
                     </MDBCol>
                 </MDBRow>

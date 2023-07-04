@@ -60,7 +60,7 @@ export default function AddProffesionalForm(props) {
         <div className='container'>
            
             {/* <h2>Add new proffesional</h2> */}
-            <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow'>
+            <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow' style={{background:"white"}}>
                 <label>First name:</label>
                 <input {...register("firstName", { required: true, minLength: 2 })} type="text" className='form-control' />
                 {errors.firstName && <div className='text-danger'>Enter valid name (min 2 chars) </div>}
@@ -120,7 +120,7 @@ export default function AddProffesionalForm(props) {
                 {errors.ig_url && <div className='text-danger'>Enter valid link (min 2) </div>}
 
                 <div className='mt-3'>
-                    <button className='btn btn-success me-5'>Add</button>
+                    <button className='btn btn-warning me-5'>Add</button>
                     
                 </div>
             </form>

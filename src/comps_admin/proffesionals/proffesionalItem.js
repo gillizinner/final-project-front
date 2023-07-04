@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { API_URL, doApiMethod } from '../../services/apiService';
+import { MDBIcon } from 'mdb-react-ui-kit';
 
 export default function ProffesionalItem(props) {
     let item = props.item;
@@ -38,7 +39,7 @@ export default function ProffesionalItem(props) {
             <td>{item.phone}</td>
             <td>{String(item.active)}</td>         
             <td>
-                <Link className='btn btn-info me-2' to={"/admin/editProffesional/" + item._id} >Edit</Link>
+            <Link to={"/admin/editClient/"+item._id} ><MDBIcon far icon="edit" style={{ color: "black" }} /></Link>
             </td>
                
            

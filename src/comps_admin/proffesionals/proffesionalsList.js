@@ -32,9 +32,10 @@ export default function ProffesionalsList() {
 
 
     return (
-        <div className='container mt-4'>
-            <CheckAdmin />
-            <Link to="/admin/addProffesional" className='btn btn-success float-end'>Add new proffesional</Link>
+        <div className='container-fluid pt-4'>
+            <div className='container'>
+                 <CheckAdmin />
+            <Link to="/admin/addProffesional" className='btn btn-info float-end'>Add new proffesional</Link>
             <h2>Proffesionals in system</h2>
             <table className='table table-striped table-hover'>
                 <thead>
@@ -55,9 +56,11 @@ export default function ProffesionalsList() {
                     })}
                 </tbody>
             </table>
-            <div className='mb-4'>
+            <div className='pb-4'>
             <PageNav urlPageApi = {API_URL + "/proffesionals/count"} perPage={perPage} navToDir="/admin/proffesionals?page=" cssClass="btn btn-outline-dark ms-2"></PageNav>
             </div>
+            </div>
+           
         </div>
     )
 }

@@ -34,10 +34,11 @@ export default function EventsClient() {
 
   return (
 
-    <div className='container-fluid'>
+    <div className='container-fluid' style={{background:"RGB(235 250 255)"}}>
       <NavbarGeneralClient />
-      <div className='container'>
-        <div className='row justify-content-center align-items-stretch g-4 my-3'>
+      <div className='container' >
+      <h1 className='text-center mt-5 pt-5'>My Events</h1>
+        <div className='row justify-content-center align-items-stretch g-4 mt-1 pb-5'>
           {info.events?.length > 0 &&
             info.events?.map((item, index) => (
               <div key={index} className='col-md-4 d-flex'>
@@ -99,6 +100,7 @@ export default function EventsClient() {
 //           </div>
 //         )}
 //       </MDBRow> */}
+
     </div>
   );
 }

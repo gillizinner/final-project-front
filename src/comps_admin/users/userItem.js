@@ -1,6 +1,7 @@
 import React from 'react'
 import { API_URL, doApiMethod } from '../../services/apiService';
 import { Link } from 'react-router-dom';
+import { MDBIcon } from 'mdb-react-ui-kit';
 export default function UserItem(props) {
     let item = props.item;
 
@@ -58,14 +59,14 @@ export default function UserItem(props) {
             <td>{item.email}</td>
             <td>{item.phone}</td>
             <td>
-                <button className='btn' onClick={onRoleClick} >
+                <button className='btn role-btn' onClick={onRoleClick} >
                     {item.role}
                 </button>
             </td>
             <td>
-                {item.active ? <button className='btn btn-outline-primary' onClick={onActiveClick}>
+                {item.active ? <button className='btn active-btn btn-outline-primary' onClick={onActiveClick}>
                     {String(item.active)}
-                </button> : <button className='btn btn-outline-danger' onClick={onActiveClick}>
+                </button> : <button className='btn active-btn btn-outline-danger' onClick={onActiveClick}>
                     {String(item.active)}
                 </button>}
 
@@ -74,7 +75,7 @@ export default function UserItem(props) {
 
 
             <td>
-                <Link className='btn btn-info me-2' to={"/admin/editUsers/" + item._id} >Edit</Link>
+            <Link to={"/admin/editClient/"+item._id} ><MDBIcon far icon="edit" style={{ color: "black" }} /></Link>
 
             </td>
         </tr>
