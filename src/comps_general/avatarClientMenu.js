@@ -12,7 +12,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { MY_INFO, MY_PROINFO } from '../services/apiService';
-import { pink } from '@mui/material/colors';
+import { amber } from '@mui/material/colors';
 import MyLogout from './logout';
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
@@ -41,7 +41,7 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                       {localStorage[MY_INFO]&&<Avatar sx={{ bgcolor: pink[500] }}>{JSON.parse(localStorage[MY_INFO])?.name.firstName.charAt(0)}</Avatar>}
+                       {localStorage[MY_INFO]&&<Avatar sx={{ bgcolor: amber[500] }}>{JSON.parse(localStorage[MY_INFO])?.name.firstName.charAt(0)}</Avatar>}
                     </IconButton>
                 </Tooltip>
             </Box>

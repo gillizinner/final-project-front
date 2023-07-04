@@ -11,7 +11,7 @@ export default function LoginUser() {
 
   const onSubForm = (bodyData) => {
     // data -> מכיל את כל המאפיינים שלה השמות של האינפוטים עם הערך שלהם
-    console.log(bodyData)
+    // console.log(bodyData)
     doApiForm(bodyData);
   }
 
@@ -19,7 +19,7 @@ export default function LoginUser() {
     let url = API_URL + "/clients/myInfo"
     try {
       let resp = await doApiMethod(url, "GET");
-      console.log(resp.data);
+      // console.log(resp.data);
       // לשמור את המידע על המשתמש
       localStorage.setItem(MY_INFO, JSON.stringify(resp.data));
     }
@@ -32,7 +32,7 @@ export default function LoginUser() {
     let url = API_URL + "/proffesionals/myInfo"
     try {
       let resp = await doApiMethod(url, "GET");
-      console.log(resp.data);
+      // console.log(resp.data);
       // לשמור את המידע על המשתמש
       localStorage.setItem(MY_PROINFO, JSON.stringify(resp.data));
     }
@@ -45,7 +45,7 @@ export default function LoginUser() {
     let url = API_URL + "/users/login"
     try {
       let resp = await doApiMethod(url, "POST", bodyData);
-      console.log(resp.data.user.role);
+      // console.log(resp.data.user.role);
       // לשמור את הטוקן
       localStorage.setItem(TOKEN_NAME, resp.data.token);
        // לשגר לעמוד של רשימת המשתמשים
@@ -83,7 +83,7 @@ export default function LoginUser() {
         {errors.email && <div className="text-danger">Enter valid email</div>}
 
         <label>Password:</label>
-        <input {...passwordRef} type="text" className='form-control' />
+        <input {...passwordRef} type="password" className='form-control' />
         {errors.password && <div className="text-danger">Enter min 3 charts password</div>}
         <button className='btn btn-warning mt-3'>Log in to system</button>
       </form>

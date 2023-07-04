@@ -139,19 +139,19 @@ export default function DisplayAvailableProffs(props) {
     return (
         <div className='row'>
             <div className='row justify-content-between my-4'>
-                <div className='col-md-4 mb-5'>
+                <div className='col-md-3 mb-5'>
                     <label htmlFor="sortOrder">Sort By Price:</label>
                     <select id="sortOrder" value={sortOrder} onChange={onSortChange} className='form-control'>
                         <option value="asc">Low to high</option>
                         <option value="desc">High to low </option>
                     </select>
                 </div>
-                <div className='col-md-4'>
+                <div className='col-md-3'>
                     <label>Filter by price:</label>
                     <RangeSlider minValue={0} maxValue={30000} onPriceRangeChange={handlePriceRangeChange} />
 
                 </div>
-                <div className='col-md-4'>
+                <div className='col-md-3'>
                     <label htmlFor="locationFilter">Filter by location:</label>
                     <select id="locationFilter" value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}
                         className='form-control'>
@@ -165,7 +165,7 @@ export default function DisplayAvailableProffs(props) {
                 </div>
             </div>
 
-            <MDBInputGroup className='mt-4'>
+            <MDBInputGroup className='mt-1'>
                 <MDBInput label='Search Proffesional By Name' value={searchQuery}
                     onInput={(e) => setSearchQuery(e.target.value)} />
                 <MDBBtn rippleColor='dark'>

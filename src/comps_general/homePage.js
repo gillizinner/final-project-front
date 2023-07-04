@@ -19,6 +19,7 @@ import AddClientForm from '../comps_users/clientRegister';
 import LoginUser from '../comps_users/logIn.js';
 import './general.css';
 import './home.css'
+import { MY_INFO,MY_PROINFO } from '../services/apiService';
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('login');
   const [registrationTab, setRegistrationTab] = useState('client');
@@ -55,9 +56,12 @@ export default function HomePage() {
     try {
 
       let resp = await doApiMethod(url, "POST", bodyFormData)
+      localStorage.setItem(MY_PROINFO, JSON.stringify(resp.data));
       if (resp.data._id) {
         alert("proffesional added succefuly");
-        nav("/proffesionals/home")
+        // nav("/")
+        window.location.reload();
+        // nav("/proffesionals/home")
       }
       else {
         alert("There problem , try again later")
@@ -75,9 +79,12 @@ export default function HomePage() {
     try {
       let resp = await doApiMethod(url, "POST", bodyFormData);
       console.log(resp.data)
+      localStorage.setItem(MY_INFO, JSON.stringify(resp.data));
       if (resp.data._id) {
         alert("client was added succefuly");
-        nav("/clients/home")
+        // nav("/")
+        window.location.reload();
+        // nav("/clients/home")
       }
       else {
         alert("There problem , try again later")

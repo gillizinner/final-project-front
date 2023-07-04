@@ -63,7 +63,7 @@ export default function AddClientForm(props) {
                 {errors.address?.street && <div className='text-danger'>Enter valid address (min 2 chars) </div>}
                 
                 <label>Building address:</label>
-                <input {...register("address.building", { required: true, minLength: 2 })} type="number" className='form-control' />
+                <input {...register("address.building", { required: true })} type="number" className='form-control' />
                 {errors.address?.building && <div className='text-danger'>Enter valid address (min 2 chars) </div>}
                
                 <div className='mt-3'>
