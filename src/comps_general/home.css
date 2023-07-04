@@ -1,0 +1,33 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    --mdb-nav-pills-link-active-bg: #8faedc;
+    --mdb-nav-pills-link-active-color: #07357d;
+    background-color: #518add;
+    color: var(--mdb-nav-pills-link-active-color);
+}
+
+.continer-fluid{
+   background:RGB(235 250 255);
+   min-height: 417px;
+}
+
+.nav-pills .nav-link {
+    --mdb-nav-pills-link-border-radius: 0.25rem;
+    --mdb-nav-pills-link-font-size: 12px;
+    --mdb-nav-pills-link-padding-top: 17px;
+    --mdb-nav-pills-link-padding-bottom: 16px;
+    --mdb-nav-pills-link-padding-x: 29px;
+    --mdb-nav-pills-link-line-height: 1;
+    --mdb-nav-pills-link-hover-bg: #fff;
+    --mdb-nav-pills-link-font-weight: 500;
+    --mdb-nav-pills-link-color: rgb(0 0 0);
+    --mdb-nav-pills-margin: 0.5rem;
+    border-radius: var(--mdb-nav-pills-link-border-radius);
+    font-size: var(--mdb-nav-pills-link-font-size);
+    text-transform: uppercase;
+    padding: var(--mdb-nav-pills-link-padding-top) var(--mdb-nav-pills-link-padding-x) var(--mdb-nav-pills-link-padding-bottom) var(--mdb-nav-pills-link-padding-x);
+    line-height: var(--mdb-nav-pills-link-line-height);
+    background-color: var(--mdb-nav-pills-link-hover-bg);
+    font-weight: var(--mdb-nav-pills-link-font-weight);
+    color: var(--mdb-nav-pills-link-color);
+    margin: var(--mdb-nav-pills-margin);
+}

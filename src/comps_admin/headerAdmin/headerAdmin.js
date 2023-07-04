@@ -2,11 +2,12 @@
 import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import Logout from '../../comps_general/logout'
+import '../../comps_general/navBar.css'
 
 export default function NavbarAdmin() {
   return (
     <div>
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-tertiary myNavbar">
         <Container>
           <Navbar.Brand href="#">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

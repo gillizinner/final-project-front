@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { API_URL, doApiMethod } from '../services/apiService';
 import NavbarGeneralClient from '../comps_general/navbarGeneralClient';
 import { useNavigate } from 'react-router-dom'
-
+import '../comps_general/general.css'
 
 function ClientsHome() {
   const [info, setInfo] = useState({});
@@ -32,28 +32,35 @@ function ClientsHome() {
   }
 
 
+  // return (
+  //   <div className='container-fluid p-0 client-home' style={{ minHeight: "450px" }}>
+  //     <div className='text-center'>
+  //       <NavbarGeneralClient />
+  //       <div className="main mt-5">
+  //         <h1 className='info-txt p-4 mt-5'>Wellcome {info.name?.firstName}</h1>
+  //         <p className='info-txt'>At our platform, we believe in making event planning a breeze. We understand the importance of finding and booking the right professionals for your special occasion. That's why we offer a unique feature that sets us apart - the ability to book all available professionals on your desired date, saving you the hassle of individually matching each professional to the same specific date.</p>
+  //         <button className='m-6' onClick={() => nav(`/client/eventpicker`)}>Lets start Creating your Event!</button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
   return (
-    <div className='container-fluid p-0' style={{minHeight:"450px"}}>
-      <div className='text-center'>
-        <NavbarGeneralClient />
-        {/* <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="/clients/home">Home</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/clients/clientProfile/:id">My profile</Nav.Link>
-              <Nav.Link href="/client/datepicker">Create event</Nav.Link>
-              <Nav.Link href="/clients/eventsClient">My events</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
-        <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
-        <button style={{backgroundColor: 'rgb(250, 210, 210)', color: 'rgb(134, 80, 80)'}} className='m-6' onClick={() => nav(`/client/eventpicker`)}>Lets start Creating your Event!</button>
+    <div className='container-fluid p-0 client-home'>
+      <NavbarGeneralClient />
+      <div className="main">
+        <video className="background-video" autoPlay loop muted>
+          <source src="../../public/images/background-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <h1 className='info-txt p-4 mt-5'>Welcome {info.name?.firstName}</h1>
+        <p className='info-txt'>At our platform, we believe in making event planning a breeze. We understand the importance of finding and booking the right professionals for your special occasion. That's why we offer a unique feature that sets us apart - the ability to book all available professionals on your desired date, saving you the hassle of individually matching each professional to the same specific date.</p>
+        <button className='m-6' onClick={() => nav(`/client/eventpicker`)}>Let's start creating your event!</button>
       </div>
     </div>
   );
+  
+  
 }
 
 export default ClientsHome;

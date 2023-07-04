@@ -7,6 +7,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import CheckAdmin from '../checkAdmin';
 import PageNav from '../../comps_general/pageNav';
+import '../admin.css'
 
 export default function ClientsList() {
     const [ar, setAr] = useState([]);
@@ -34,37 +35,40 @@ export default function ClientsList() {
 
 
     return (
-        <div className='container mt-4'>
-            <Link to="/admin/addClient" className='btn btn-success float-end'>Add new client</Link>
-            <CheckAdmin />
-            <h2>Clients in system</h2>
-           
-            <table className='table table-striped table-hover'>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Active</th>
-                        <th>City</th>
-                        <th>Street</th>
-                        <th>Building</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ar.map((item, i) => {
-                        return (
-                            <ClientItem key={item._id} doApi={doApi} index={i} item={item} />
-                        )
-                    })}
-                </tbody>
-            </table>
-            <div className='mb-4'>
-            <PageNav  urlPageApi={API_URL+"/clients/count"} perPage={perPage} navToDir="/admin/clients?page=" cssClass="btn btn-outline-dark ms-2 "></PageNav>
+        <div className='container-fluid pt-5' >
+            <div className='container'>
+                <Link to="/admin/addClient" className='btn btn-info float-end'>Add new client</Link>
+                <CheckAdmin />
+                <h2>Clients in system</h2>
+
+                <table className='table table-striped table-hover' >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Active</th>
+                            <th>City</th>
+                            <th>Street</th>
+                            <th>Building</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ar.map((item, i) => {
+                            return (
+                                <ClientItem key={item._id} doApi={doApi} index={i} item={item} />
+                            )
+                        })}
+                    </tbody>
+                </table>
+                <div className='pb-3'>
+                    <PageNav urlPageApi={API_URL + "/clients/count"} perPage={perPage} navToDir="/admin/clients?page=" cssClass="btn btn-outline-dark ms-2 "></PageNav>
+                </div>
+
             </div>
-           
+
         </div>
     )
 }

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import Logout from './logout'
-import './navbarGeneralProffesional.css'
+import './navBar.css'
 export default function NavbarGeneralProffesionel() {
   return (
 
     <div>
-         <Navbar expand="lg" style={{background:"RGB(251 249 249)"}}>
-
+         <Navbar expand="lg" className='myNavbar' >
+{/* 
 //     <div style={{ backgroundColor: 'rgb(250, 210, 210)' , color: 'rgb(216, 173, 173)'}}>
-//          <Navbar expand="lg" className="bg-body-tertiary">
+//          <Navbar expand="lg" className="bg-body-tertiary"> */}
 
         <Container>
           <Navbar.Brand href="/proffesionals/home">Home</Navbar.Brand>

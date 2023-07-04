@@ -32,8 +32,9 @@ export default function EventsList() {
 
 
     return (
-        <div className='container mt-4'>
-            <CheckAdmin />
+        <div className='container-fluid pt-4'>
+            <div className='container'>
+                 <CheckAdmin />
             <h2>Events in systems</h2>
             
             <table className='table table-striped table-hover'>
@@ -55,9 +56,11 @@ export default function EventsList() {
                     })}
                 </tbody>
             </table>
-            <div className='mb-4'>
+            <div className='pb-4'>
             <PageNav urlPageApi = {API_URL + "/events/count"} perPage={perPage} navToDir="/admin/events?page=" cssClass="btn btn-outline-dark ms-2"></PageNav>
             </div>
+            </div>
+           
         </div>
     )
 }

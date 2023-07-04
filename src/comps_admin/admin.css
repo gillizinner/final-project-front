@@ -1,0 +1,21 @@
+.container-fluid{
+    background:RGB(235 250 255);
+}
+
+table{
+    margin-top: 32px;
+    background: rgb(185 229 244);
+    border-radius: 4px;
+}
+
+.role-btn{
+    background:#FAF4EE;
+    width: 128px;
+}
+.role-btn:hover{
+    background:rgb(232, 228, 224)
+}
+
+.active-btn{
+    width: 94px;
+}

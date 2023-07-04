@@ -12,7 +12,7 @@ export default function UserProfileInfo(props) {
                     <MDBCardText className="text-muted">{props.info.email}</MDBCardText>
                 </MDBCol>
                 <MDBCol size="6" className="mb-3">
-                    <MDBTypography tag="h6">phone</MDBTypography>
+                    <MDBTypography tag="h6">Phone</MDBTypography>
                     <MDBCardText className="text-muted">{props.info.phone}</MDBCardText>
                 </MDBCol>
             </MDBRow>
