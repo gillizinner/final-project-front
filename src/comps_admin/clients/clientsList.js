@@ -34,12 +34,11 @@ export default function ClientsList() {
 
 
     return (
-        <div className='container'>
-            {/* <CheckAdminComp /> */}
-            <Link to="/admin/addClient" className='btn btn-success'>Add new client</Link>
+        <div className='container mt-4'>
+            <Link to="/admin/addClient" className='btn btn-success float-end'>Add new client</Link>
             <CheckAdmin />
-            <h1>List of clients in systems</h1>
-            <PageNav urlPageApi={API_URL+"/clients/count"} perPage={perPage} navToDir="/admin/clients?page=" cssClass="btn btn-warning ms-2"></PageNav>
+            <h2>Clients in system</h2>
+           
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
@@ -62,6 +61,10 @@ export default function ClientsList() {
                     })}
                 </tbody>
             </table>
+            <div className='mb-4'>
+            <PageNav  urlPageApi={API_URL+"/clients/count"} perPage={perPage} navToDir="/admin/clients?page=" cssClass="btn btn-outline-dark ms-2 "></PageNav>
+            </div>
+           
         </div>
     )
 }
