@@ -32,7 +32,7 @@ export default function EventItem(props) {
             <td>{props.index + 1}</td>
             <td>{item.type}</td>
             <td>{item.location}</td>
-            <td>{item.date}</td>
+            <td>{new Date(item.date).toLocaleDateString() }</td>
             <td>{item.client_id.name.firstName}</td>
             <td>{item.client_id.name.lastName}</td>
 
