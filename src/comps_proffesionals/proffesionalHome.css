@@ -1,0 +1,22 @@
+.faq {
+    min-height: 70vh;
+}
+
+.faq .container {
+    min-height: inherit;
+}
+#bg-video-container {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}

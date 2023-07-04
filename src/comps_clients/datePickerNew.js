@@ -5,15 +5,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function BasicDatePicker() {
+export default function BasicDatePicker(props) {
   const [selectedStartDate, setselectedStartDate] = useState(null);
   const [selectedEndDate, setselectedEndDate] = useState(null);
 
   const handleStartDateChange = (date) => {
     setselectedStartDate(date);
+    props.handleStartDateChange(date);
   };
   const handleEndDateChange = (date) => {
     setselectedEndDate(date);
+    props.handleEndDateChange(date);
   };
 
   return (
@@ -24,17 +26,17 @@ export default function BasicDatePicker() {
           value={selectedStartDate}
           onChange={handleStartDateChange}
         />
-        {selectedStartDate && (
+        {/* {selectedStartDate && (
           <p>Selected Start date: {new Date(selectedStartDate).toLocaleDateString()}</p>
-        )}
+        )} */}
         <DatePicker
           label="End Date"
           value={selectedEndDate}
           onChange={handleEndDateChange}
         />
-        {selectedEndDate && (
+        {/* {selectedEndDate && (
           <p>Selected End date: {new Date(selectedEndDate).toLocaleDateString()}</p>
-        )}
+        )} */}
       </DemoContainer>
     </LocalizationProvider>
   );
