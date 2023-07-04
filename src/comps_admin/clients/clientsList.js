@@ -35,7 +35,7 @@ export default function ClientsList() {
 
 
     return (
-        <div className='container-fluid pt-5' >
+        <div className='adminContainer-fluid pt-5' >
             <div className='container'>
                 <Link to="/admin/addClient" className='btn btn-info float-end'>Add new client</Link>
                 <CheckAdmin />

@@ -3,10 +3,14 @@ Nav.Link {
 }
 
 a :hover() {
-    color:#EBBC7F
+    color: #EBBC7F
 }
+
 .myNavbar {
     background: rgb(250, 244, 238);
-    
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
     /* background: rgb(247, 238, 227); */
 }

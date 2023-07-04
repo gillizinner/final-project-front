@@ -31,7 +31,7 @@ export default function UsersList() {
     }
 
     return (
-        <div className='container-fluid pt-4'>
+        <div className='adminContainer-fluid pt-4'>
             <div className='container'>
                 <Link to="/admin/addUser" className='btn btn-info float-end'>Add new User</Link>
             <h2>Users in system</h2>

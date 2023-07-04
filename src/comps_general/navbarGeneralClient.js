@@ -4,10 +4,11 @@ import Logout from './logout'
 import AccountMenu from './avatarClientMenu'
 // import "./general.css"
 import './navBar.css';
+
 export default function NavbarGeneralClient() {
   return (
     <div>
-        <Navbar expand="lg" className="myNavbar" fixed='top'>
+        <Navbar expand="lg" className="myNavbar">
         <Container>
           <Navbar.Brand href="/clients/home">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

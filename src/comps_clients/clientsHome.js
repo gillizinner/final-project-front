@@ -55,7 +55,7 @@ function ClientsHome() {
         </video>
         <h1 className='info-txt p-4 mt-5'>Welcome {info.name?.firstName}</h1>
         <p className='info-txt'>At our platform, we believe in making event planning a breeze. We understand the importance of finding and booking the right professionals for your special occasion. That's why we offer a unique feature that sets us apart - the ability to book all available professionals on your desired date, saving you the hassle of individually matching each professional to the same specific date.</p>
-        <button className='m-6' onClick={() => nav(`/client/eventpicker`)}>Let's start creating your event!</button>
+        <button className='m-6 btn btn-info' onClick={() => nav(`/client/eventpicker`)}>Let's start creating your event!</button>
       </div>
     </div>
   );
