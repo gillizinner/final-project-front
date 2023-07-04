@@ -13,7 +13,7 @@ export default function DisplayChosenProffs() {
     return (
         <div>
             <h3 style={{ fontSize: "xxx-large", fontFamily: 'Stint Ultra Condensed', color: "rgb(235 188 127)" }}>Selected Proffesionals:</h3>
-            <h4 className='text-secondary' style={{ fontFamily: 'Stint Ultra Condensed' }}>No Proffesionals were selected</h4>
+            {selectedProffs.length < 1 && <h4 className='text-secondary' style={{ fontFamily: 'Stint Ultra Condensed' }}>No Proffesionals were selected</h4>}
             <ol className='mt-4'>
                 {selectedProffs.map((item, index) => (
                     <li key={index} className='row'>

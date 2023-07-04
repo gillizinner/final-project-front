@@ -1,5 +1,5 @@
 import axios from "axios";
-export const API_URL = "http://localhost:3004"
+export const API_URL = "https://savethedate-0xpb.onrender.com"
 export const TOKEN_NAME = "EVENTS_TOKEN"
 export const MY_INFO = "MY_INFO"
 export const MY_PROINFO = "MY_PROINFO"
@@ -10,7 +10,7 @@ export const doApiGet = async(_url) => {
       let resp = await axios.get(_url,{
         headers:{
           "x-api-key": localStorage[TOKEN_NAME]
-        }
+        } 
       })
       return resp;
     }
