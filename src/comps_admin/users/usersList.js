@@ -31,12 +31,11 @@ export default function UsersList() {
     }
 
     return (
-        <div className='container'>
+        <div className='container mt-4'>
             <CheckAdmin />
 
-            <Link to="/admin/addUser" className='btn btn-success'>Add new User</Link>
-            <h1>List of users in systems</h1>
-            <PageNav urlPageApi={API_URL + "/users/count"} perPage={perPage} navToDir="/admin/users?page=" cssClass="btn btn-warning ms-2"></PageNav>
+            <Link to="/admin/addUser" className='btn btn-success float-end'>Add new User</Link>
+            <h2>Users in system</h2>
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
@@ -57,6 +56,9 @@ export default function UsersList() {
                     })}
                 </tbody>
             </table>
+            <div className='mb-4'>
+            <PageNav urlPageApi={API_URL + "/users/count"} perPage={perPage} navToDir="/admin/users?page=" cssClass="btn btn-outline-dark ms-2"></PageNav>
+            </div>
         </div>
     )
 }

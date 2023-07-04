@@ -32,11 +32,10 @@ export default function ProffesionalsList() {
 
 
     return (
-        <div className='container'>
+        <div className='container mt-4'>
             <CheckAdmin />
-            <Link to="/admin/addProffesional" className='btn btn-success'>Add new proffesional</Link>
-            <h1>List of proffesionals in systems</h1>
-            <PageNav urlPageApi = {API_URL + "/proffesionals/count"} perPage={perPage} navToDir="/admin/proffesionals?page=" cssClass="btn btn-warning ms-2"></PageNav>
+            <Link to="/admin/addProffesional" className='btn btn-success float-end'>Add new proffesional</Link>
+            <h2>Proffesionals in system</h2>
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
@@ -56,6 +55,9 @@ export default function ProffesionalsList() {
                     })}
                 </tbody>
             </table>
+            <div className='mb-4'>
+            <PageNav urlPageApi = {API_URL + "/proffesionals/count"} perPage={perPage} navToDir="/admin/proffesionals?page=" cssClass="btn btn-outline-dark ms-2"></PageNav>
+            </div>
         </div>
     )
 }
