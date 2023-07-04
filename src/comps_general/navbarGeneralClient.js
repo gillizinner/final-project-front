@@ -3,11 +3,11 @@ import { Nav, Navbar, Container } from 'react-bootstrap'
 import Logout from './logout'
 import AccountMenu from './avatarClientMenu'
 // import "./general.css"
-
+import './navBar.css';
 export default function NavbarGeneralClient() {
   return (
-    <div style={{ backgroundColor: 'rgb(250, 210, 210)' , color: 'rgb(216, 173, 173)'}}>
-        <Navbar expand="lg" className="bg-body-tertiary">
+    <div>
+        <Navbar expand="lg" className="myNavbar" fixed='top'>
         <Container>
           <Navbar.Brand href="/clients/home">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -77,7 +77,7 @@ export default function LoginUser() {
   let passwordRef = register("password", { required: true, minLength: 3 });
   return (
     <div className='container'>
-      <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow mx-auto'>
+      <form onSubmit={handleSubmit(onSubForm)} className='col-md-6 p-3 shadow mx-auto' style={{background:"white"}}>
         <label>Email:</label>
         <input {...emailRef} type="text" className='form-control' />
         {errors.email && <div className="text-danger">Enter valid email</div>}
@@ -85,7 +85,7 @@ export default function LoginUser() {
         <label>Password:</label>
         <input {...passwordRef} type="text" className='form-control' />
         {errors.password && <div className="text-danger">Enter min 3 charts password</div>}
-        <button className='btn btn-dark mt-3'>Log in to system</button>
+        <button className='btn btn-warning mt-3'>Log in to system</button>
       </form>
     </div>
   )

@@ -34,10 +34,11 @@ export default function EventsClient() {
 
   return (
 
-    <div className='container-fluid'>
+    <div className='container-fluid' style={{background:"RGB(235 250 255)"}}>
       <NavbarGeneralClient />
-      <div className='container'>
-        <div className='row justify-content-center align-items-stretch g-4 my-3'>
+      <div className='container' >
+      <h1 className='text-center mt-5 pt-5'>My Events</h1>
+        <div className='row justify-content-center align-items-stretch g-4 mt-1 pb-5'>
           {info.events?.length > 0 &&
             info.events?.map((item, index) => (
               <div key={index} className='col-md-4 d-flex'>
@@ -48,6 +49,7 @@ export default function EventsClient() {
             ))}
         </div>
       </div>
+
 
      {/* <div style={{minHeight:"450px"}}>
        <NavbarGeneralClient/>
@@ -99,6 +101,58 @@ export default function EventsClient() {
           </div>
         )}
       </MDBRow> */}
+
+{/* //     <div style={{minHeight:"450px"}}>
+//       <NavbarGeneralClient/>
+//       <h2 className="text-center m-4">My events</h2>
+//       <MDBRow className="container align-items-center justify-contect-center row-cols-1 row-cols-md-3 g-4">
+//         {info.events?.length > 0 ? ( */}
+{/* //           info.events?.map((item, index) => (
+//             <MDBCol key={item._id}>
+//               <MDBCard className="h-100">
+//                 <MDBCardImage */}
+{/* //                   src="https://mdbootstrap.com/img/new/standard/city/042.webp"
+//                   alt="..."
+//                   position="top"
+//                 /> */}
+{/* //                 <MDBCardBody>
+//                   <MDBCardTitle>
+//                     Your {item.type} is in {item.location}
+//                   </MDBCardTitle>
+//                   <MDBCardText>
+//                     Your event date is {new Date(item.date).toLocaleDateString()}.
+//                     <br />
+//                     Status: {item.status}.
+//                     <br />
+//                     <div>
+//                       <button className="btn mt-4 mb-3 btn-success" onClick={() => handleToggle(index)}>
+//                         For more details
+//                       </button>
+
+//                       {toggleStates[index] && ( */}
+{/* //                         <div>
+//                           <h4>The professionals of your event are:</h4>
+//                           <ul>
+//                             {item.proffesionals.map((proffesional) => ( */}
+{/* //                               <li key={proffesional._id}> {proffesional.category} - {proffesional.name?.firstName} {proffesional.name?.lastName}</li>
+//                             ))}
+//                           </ul> */}
+{/* //                         </div> */}
+{/* //                       )}
+//                     </div> */}
+{/* //                   </MDBCardText>
+//                 </MDBCardBody>
+//               </MDBCard>
+//             </MDBCol> */}
+{/* //           ))
+//         ) : (
+//           <div>
+//             <h3>There are no events - create an event</h3>
+//             <button className="btn btn-primary m-4">Let's start creating your Event!</button>
+//           </div>
+//         )}
+//       </MDBRow> */}
+
 
     </div>
   );

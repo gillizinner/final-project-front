@@ -1,0 +1,12 @@
+Nav.Link {
+    font-family: 'Stint Ultra Condensed', cursive;
+}
+
+a :hover() {
+    color:#EBBC7F
+}
+.myNavbar {
+    background: rgb(250, 244, 238);
+    
+    /* background: rgb(247, 238, 227); */
+}
