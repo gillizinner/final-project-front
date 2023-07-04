@@ -200,7 +200,7 @@ const EventPicker = () => {
                                 Bat Mitzvah
                             </MDBBtn>
                             <MDBBtn
-                                color={selectedEvent === 'Brit' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Brit' ? 'info' : 'light'}
                                 onClick={handleEventChange}
                                 value="Brit"
                             >
@@ -208,7 +208,7 @@ const EventPicker = () => {
                                 Britt
                             </MDBBtn>
                             <MDBBtn
-                                color={selectedEvent === 'Engagement' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Engagement' ? 'primary' : 'light'} 
                                 onClick={handleEventChange}
                                 value="Engagement"
                             >
@@ -219,7 +219,7 @@ const EventPicker = () => {
                         <select
                             id="location"
                             label="Event Location"
-                            className='form-control mt-4'
+                            className='form-control mt-4' 
                             onChange={handleLocationChange}>
                             <option>Choose a location</option>
                             {cities.map((city) => (
@@ -231,8 +231,8 @@ const EventPicker = () => {
                         {errorMessage && (
                             <div className="text-center mt-2 text-danger">{errorMessage}</div>
                         )}
-                        <div className="text-center mt-4">
-                            <MDBBtn onClick={handleProfessionalsClick}>Choose Your Professionals</MDBBtn>
+                        <div className="text-center mt-4 p-2">
+                            <MDBBtn style={{backgroundColor: 'rgb(134, 80, 80)',color: 'rgb(250, 210, 210)'}} onClick={handleProfessionalsClick}>Choose Your Professionals</MDBBtn>
                         </div>
                     </MDBCol>
                 </MDBRow>

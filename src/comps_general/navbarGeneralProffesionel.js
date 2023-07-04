@@ -4,7 +4,7 @@ import Logout from './logout'
 
 export default function NavbarGeneralProffesionel() {
   return (
-    <div>
+    <div style={{ backgroundColor: 'rgb(250, 210, 210)' , color: 'rgb(216, 173, 173)'}}>
          <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/proffesionals/home">Home</Navbar.Brand>
