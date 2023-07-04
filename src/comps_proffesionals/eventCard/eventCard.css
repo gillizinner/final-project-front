@@ -1,0 +1,36 @@
+/* .img-media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .img-media-card > * {
+    flex: 1;
+  }
+   */
+
+/* .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
+    gap: 20px;
+}
+
+.img-media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+} */
+
+.card-container {
+  width: 100%;
+}
+
+/* .title {
+  font-size: "xxx-large";
+  font-family: 'Stint Ultra Condensed',cursive;
+  color: rgb(235 188 127)
+} */
+
+/* *{
+    font-family: 'Stint Ultra Condensed',cursive;
+  } */

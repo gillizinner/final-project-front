@@ -1,108 +1,3 @@
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import {
-//     MDBContainer,
-//     MDBRow,
-//     MDBCol,
-//     MDBInput,
-//     MDBIcon,
-//     MDBBtn,
-// } from 'mdb-react-ui-kit';
-
-// const EventPicker = () => {
-//     const navigate = useNavigate();
-//     const [selectedEvent, setSelectedEvent] = useState('');
-//     const [location, setLocation] = useState('');
-//     const [errorMessage, setErrorMessage] = useState('');
-
-//     const handleEventChange = (event) => {
-//         setSelectedEvent(event.target.value);
-//     };
-
-//     const handleLocationChange = (event) => {
-//         setLocation(event.target.value);
-//     };
-
-//     const handleProfessionalsClick = () => {
-//         if (selectedEvent === '' || location === '') {
-//             setErrorMessage('Please select an event type and enter the event location.');
-//         } else {
-//             // Navigate to the new route with the query parameters
-//             navigate(`/client/datepicker/${selectedEvent}/${location}`);
-//         }
-//     };
-
-//     return (
-//         <MDBContainer>
-//             <MDBRow className="justify-content-center">
-//                 <MDBCol md="6">
-//                     <div className="text-center mb-4">
-//                         <h4>Pick an Event Type</h4>
-//                     </div>
-//                     <div className="d-grid gap-3">
-//                         <MDBBtn
-//                             color={selectedEvent === 'wedding' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="wedding"
-//                         >
-//                             <MDBIcon icon="glass-cheers" className="me-2" />
-//                             Wedding
-//                         </MDBBtn>
-//                         {/* <MDBBtn
-//                             color={selectedEvent === 'bar Mitzvah' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="bar Mitzvah"
-//                         >
-//                             <MDBIcon icon="book" className="me-2" />
-//                             Bar Mitzvah
-//                         </MDBBtn>
-//                         <MDBBtn
-//                             color={selectedEvent === 'batMitzvah' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="batMitzvah"
-//                         >
-//                             <MDBIcon icon="book" className="me-2" />
-//                             Bat Mitzvah
-//                         </MDBBtn>
-//                         <MDBBtn
-//                             color={selectedEvent === 'britt' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="britt"
-//                         >
-//                             <MDBIcon icon="child" className="me-2" />
-//                             Britt
-//                         </MDBBtn> */}
-//                         {/* <MDBBtn
-//                             color={selectedEvent === 'engagement' ? 'primary' : 'light'}
-//                             onClick={handleEventChange}
-//                             value="engagement"
-//                         >
-//                             <MDBIcon icon="heart" className="me-2" />
-//                             Engagement
-//                         </MDBBtn> */}
-//                     </div>
-//                     <MDBInput
-//                         type="text"
-//                         id="location"
-//                         label="Event Location"
-//                         value={location}
-//                         onChange={handleLocationChange}
-//                     />
-//                     {errorMessage && (
-//                         <div className="text-center mt-2 text-danger">{errorMessage}</div>
-//                     )}
-//                     <div className="text-center mt-4">
-//                         <MDBBtn onClick={handleProfessionalsClick}>Choose Your Professionals</MDBBtn>
-//                     </div>
-//                 </MDBCol>
-//             </MDBRow>
-//         </MDBContainer>
-//     );
-// };
-
-// export default EventPicker;
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -114,6 +9,7 @@ import {
     MDBIcon,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import './eventPicker.css'
 
 const EventPicker = () => {
     const navigate = useNavigate();
@@ -166,35 +62,35 @@ const EventPicker = () => {
     };
 
     return (
-
+<div className='container-fluid pt-5' style={{background:"RGB(235 250 255)",minHeight:"100vh"}}>
         <MDBContainer >
-            <MDBContainer className='mt-5'>
+            <MDBContainer>
                 <MDBRow className="justify-content-center">
                     <MDBCol md="6">
-                        <div className="text-center mb-4">
-                            <h4>Pick an Event Type</h4>
+                        <div className="title text-center mb-4">
+                            <h1>Pick an Event Type</h1>
                         </div>
                         <div className="d-grid gap-3">
                             <MDBBtn
-                                color={selectedEvent === 'Wedding' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Wedding' ? 'info' : 'light'}
                                 onClick={handleEventChange}
-                                value="Wedding"
+                                value="Wedding" className='event-btn'
                             >
                                 <MDBIcon icon="glass-cheers" className="me-2" />
                                 Wedding
                             </MDBBtn>
                             <MDBBtn
-                                color={selectedEvent === 'Bar-Miztva' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Bar-Miztva' ? 'info' : 'light'}
                                 onClick={handleEventChange}
-                                value="Bar-Miztva"
+                                value="Bar-Miztva" className='event-btn'
                             >
                                 <MDBIcon icon="book" className="me-2" />
                                 Bar Mitzvah
                             </MDBBtn>
                             <MDBBtn
-                                color={selectedEvent === 'Bat-Mitzva' ? 'primary' : 'light'}
+                                color={selectedEvent === 'Bat-Mitzva' ? 'info' : 'light'}
                                 onClick={handleEventChange}
-                                value="Bat-Mitzva"
+                                value="Bat-Mitzva" className='event-btn'
                             >
                                 <MDBIcon icon="book" className="me-2" />
                                 Bat Mitzvah
@@ -202,15 +98,19 @@ const EventPicker = () => {
                             <MDBBtn
                                 color={selectedEvent === 'Brit' ? 'info' : 'light'}
                                 onClick={handleEventChange}
-                                value="Brit"
+                                value="Brit"className='event-btn'
                             >
                                 <MDBIcon icon="child" className="me-2" />
                                 Britt
                             </MDBBtn>
                             <MDBBtn
-                                color={selectedEvent === 'Engagement' ? 'primary' : 'light'} 
+
+                                color={selectedEvent === 'Engagement' ? 'info' : 'light'}
+
+                                
+
                                 onClick={handleEventChange}
-                                value="Engagement"
+                                value="Engagement" className='event-btn'
                             >
                                 <MDBIcon icon="heart" className="me-2" />
                                 Engagement
@@ -231,13 +131,15 @@ const EventPicker = () => {
                         {errorMessage && (
                             <div className="text-center mt-2 text-danger">{errorMessage}</div>
                         )}
-                        <div className="text-center mt-4 p-2">
-                            <MDBBtn style={{backgroundColor: 'rgb(134, 80, 80)',color: 'rgb(250, 210, 210)'}} onClick={handleProfessionalsClick}>Choose Your Professionals</MDBBtn>
+
+                        <div className="text-center mt-4">
+                            <MDBBtn onClick={handleProfessionalsClick} style={{background:"RGB(90 206 236)"}}>Choose Your Professionals</MDBBtn>
                         </div>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
         </MDBContainer >
+        </div>
     );
 };
 

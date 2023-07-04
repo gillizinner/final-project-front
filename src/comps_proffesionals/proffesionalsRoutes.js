@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from "react-router-dom"
 import ProffesionalProfile from './proffesionalProfile'
 import ProffesionalsHome from './proffesionalsHome'
-import EventsProffesional from './eventsProffesional'
+import EventsProffesional from './eventProffesionals/eventsProffesional'
 import EditProffesional from './editProffesional'
 
 export const ProffesionalsRoutes = () => {
