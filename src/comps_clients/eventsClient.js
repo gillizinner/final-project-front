@@ -49,20 +49,20 @@ export default function EventsClient() {
         </div>
       </div>
 
-//     <div style={{minHeight:"450px"}}>
+{/* //     <div style={{minHeight:"450px"}}>
 //       <NavbarGeneralClient/>
 //       <h2 className="text-center m-4">My events</h2>
 //       <MDBRow className="container align-items-center justify-contect-center row-cols-1 row-cols-md-3 g-4">
-//         {info.events?.length > 0 ? (
-//           info.events?.map((item, index) => (
+//         {info.events?.length > 0 ? ( */}
+{/* //           info.events?.map((item, index) => (
 //             <MDBCol key={item._id}>
 //               <MDBCard className="h-100">
-//                 <MDBCardImage
-//                   src="https://mdbootstrap.com/img/new/standard/city/042.webp"
+//                 <MDBCardImage */}
+{/* //                   src="https://mdbootstrap.com/img/new/standard/city/042.webp"
 //                   alt="..."
 //                   position="top"
-//                 />
-//                 <MDBCardBody>
+//                 /> */}
+{/* //                 <MDBCardBody>
 //                   <MDBCardTitle>
 //                     Your {item.type} is in {item.location}
 //                   </MDBCardTitle>
@@ -76,30 +76,29 @@ export default function EventsClient() {
 //                         For more details
 //                       </button>
 
-//                       {toggleStates[index] && (
-//                         <div>
+//                       {toggleStates[index] && ( */}
+{/* //                         <div>
 //                           <h4>The professionals of your event are:</h4>
 //                           <ul>
-//                             {item.proffesionals.map((proffesional) => (
-//                               <li key={proffesional._id}> {proffesional.category} - {proffesional.name?.firstName} {proffesional.name?.lastName}</li>
+//                             {item.proffesionals.map((proffesional) => ( */}
+{/* //                               <li key={proffesional._id}> {proffesional.category} - {proffesional.name?.firstName} {proffesional.name?.lastName}</li>
 //                             ))}
-//                           </ul>
-//                         </div>
-//                       )}
-//                     </div>
-//                   </MDBCardText>
+//                           </ul> */}
+{/* //                         </div> */}
+{/* //                       )}
+//                     </div> */}
+{/* //                   </MDBCardText>
 //                 </MDBCardBody>
 //               </MDBCard>
-//             </MDBCol>
-//           ))
+//             </MDBCol> */}
+{/* //           ))
 //         ) : (
 //           <div>
 //             <h3>There are no events - create an event</h3>
 //             <button className="btn btn-primary m-4">Let's start creating your Event!</button>
 //           </div>
 //         )}
-//       </MDBRow>
-
+//       </MDBRow> */}
     </div>
   );
 }
