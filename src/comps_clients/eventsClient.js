@@ -148,7 +148,7 @@ export default function EventsClient() {
   };
 
   return (
-    <div>
+    <div style={{minHeight:"450px"}}>
       <NavbarGeneralClient/>
       <h2 className="text-center m-4">My events</h2>
       <MDBRow className="container align-items-center justify-contect-center row-cols-1 row-cols-md-3 g-4">

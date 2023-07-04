@@ -10,6 +10,7 @@ import { usersRoutes } from './comps_users/usersRoutes';
 import { clientsRoutes } from './comps_clients/clientsRoutes';
 import { ProffesionalsRoutes } from './comps_proffesionals/proffesionalsRoutes';
 import HomePage from './general_comps.js/homePage';
+import Footer from './comps_general/footer';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       {/* {clientRoutes()} */}
     </Routes>
     {/* <LoginUser/> */}
+    <Footer/>
   </BrowserRouter>
   );
 }

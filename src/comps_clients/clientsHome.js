@@ -15,27 +15,28 @@ function ClientsHome() {
 
   useEffect(() => {
     doApiInit();
-}, [])
+  }, [])
 
 
-const doApiInit = async () => {
-  let url = API_URL + "/clients/myInfo";
-  try {
-    let resp = await doApiMethod(url, "GET")
-    console.log(resp.data);
-    setInfo(resp.data);
+  const doApiInit = async () => {
+    let url = API_URL + "/clients/myInfo";
+    try {
+      let resp = await doApiMethod(url, "GET")
+      console.log(resp.data);
+      setInfo(resp.data);
+    }
+    catch (err) {
+      console.log(err);
+      alert("There problem try come back later");
+    }
   }
-  catch (err) {
-    console.log(err);
-    alert("There problem try come back later");
-  }
-}
 
 
   return (
-    <div className='text-center m-3'>
-      <NavbarGeneralClient/>
-      {/* <Navbar expand="lg" className="bg-body-tertiary">
+    <div className='container-fluid p-0' style={{minHeight:"450px"}}>
+      <div className='text-center'>
+        <NavbarGeneralClient />
+        {/* <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/clients/home">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -48,8 +49,9 @@ const doApiInit = async () => {
           </Navbar.Collapse>
         </Container>
       </Navbar> */}
-      <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
-      <button className='btn btn-primary m-4' onClick={() => nav(`/client/eventpicker`)}>Lets start Creating your Event!</button>
+        <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
+        <button style={{backgroundColor: 'rgb(250, 210, 210)', color: 'rgb(134, 80, 80)'}} className='m-6' onClick={() => nav(`/client/eventpicker`)}>Lets start Creating your Event!</button>
+      </div>
     </div>
   );
 }

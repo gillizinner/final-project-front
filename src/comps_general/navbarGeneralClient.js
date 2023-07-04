@@ -1,10 +1,11 @@
 import React from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import Logout from './logout'
+// import "./general.css"
 
 export default function NavbarGeneralClient() {
   return (
-    <div>
+    <div style={{ backgroundColor: 'rgb(250, 210, 210)' , color: 'rgb(216, 173, 173)'}}>
         <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/clients/home">Home</Navbar.Brand>

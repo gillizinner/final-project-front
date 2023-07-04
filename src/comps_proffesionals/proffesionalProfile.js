@@ -45,7 +45,7 @@ export default function ProffesionalProfile() {
                                         alt="name" className="my-5" style={{ width: '80px' }} fluid />
                                     <MDBTypography tag="h5">{info.name?.firstName} {info.name?.lastName}</MDBTypography>
                                     <MDBCardText>{info.category}</MDBCardText>
-                                    <Link  to={`/proffesionals/editProffesional/${info._id}`}><MDBIcon far icon="edit mb-5" /></Link>
+                                    <Link  to={`/proffesionals/editProffesional/${info._id}`}><MDBIcon far icon="edit mb-5" style={{color: 'rgb(134, 80, 80)'}}/></Link>
                                 </MDBCol>
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
@@ -72,7 +72,7 @@ export default function ProffesionalProfile() {
                                         {info.ig_url?<div className="d-flex justify-content-start">
                                             {/* <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
                                             <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a> */}
-                                            <a href={info.ig_url} target='blank'><MDBIcon fab icon="instagram me-3" size="lg" /> My Instagram</a>
+                                            <a style={{color: 'rgb(134, 80, 80)'}} href={info.ig_url} target='blank'><MDBIcon fab icon="instagram me-3" size="lg" /> My Instagram</a>
                                         </div>:"" }
                                         
                                     </MDBCardBody>

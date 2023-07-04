@@ -16,7 +16,7 @@ function Logout() {
     }
     return (
         <div>
-            {localStorage[TOKEN_NAME] ? <button className='btn btn-danger' onClick={() => onLogOut()}>Log out</button> : <Link to="/" className='btn btn-dark'>Log in page</Link>}
+            {localStorage[TOKEN_NAME] ? <button style={{backgroundColor: 'rgb(134, 80, 80)',color: 'rgb(250, 210, 210)'}} onClick={() => onLogOut()}>Log out</button> : <Link to="/" style={{color: 'rgb(134, 80, 80)'}}>Log in page</Link>}
         </div>
     )
 }
