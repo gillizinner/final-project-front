@@ -104,7 +104,11 @@ const EventPicker = () => {
                                 Britt
                             </MDBBtn>
                             <MDBBtn
+
                                 color={selectedEvent === 'Engagement' ? 'info' : 'light'}
+
+                                
+
                                 onClick={handleEventChange}
                                 value="Engagement" className='event-btn'
                             >
@@ -115,7 +119,7 @@ const EventPicker = () => {
                         <select
                             id="location"
                             label="Event Location"
-                            className='form-control mt-4'
+                            className='form-control mt-4' 
                             onChange={handleLocationChange}>
                             <option>Choose a location</option>
                             {cities.map((city) => (
@@ -127,6 +131,7 @@ const EventPicker = () => {
                         {errorMessage && (
                             <div className="text-center mt-2 text-danger">{errorMessage}</div>
                         )}
+
                         <div className="text-center mt-4">
                             <MDBBtn onClick={handleProfessionalsClick} style={{background:"RGB(90 206 236)"}}>Choose Your Professionals</MDBBtn>
                         </div>

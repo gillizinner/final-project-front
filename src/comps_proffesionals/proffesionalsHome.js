@@ -13,41 +13,43 @@ function ProffesionalsHome() {
 
   useEffect(() => {
     doApiInit();
-}, [])
+  }, [])
 
 
-const doApiInit = async () => {
-  let url = API_URL + "/Proffesionals/myInfo";
-  try {
-    let resp = await doApiMethod(url, "GET")
-    console.log(resp.data);
-    setInfo(resp.data);
+  const doApiInit = async () => {
+    let url = API_URL + "/Proffesionals/myInfo";
+    try {
+      let resp = await doApiMethod(url, "GET")
+      console.log(resp.data);
+      setInfo(resp.data);
+    }
+    catch (err) {
+      console.log(err);
+      alert("There problem try come back later");
+    }
   }
-  catch (err) {
-    console.log(err);
-    alert("There problem try come back later");
-  }
-}
 
 
   return (
-    <div className='text-center m-3'>
-      <NavbarGeneralProffesionel/>
-      {/* <Navbar expand="lg" className="bg-body-tertiary">
+    <div className='container-fluid p-0' style={{minHeight:"450px"}}>
+      <div className='text-center'>
+        <NavbarGeneralProffesionel />
+        {/* <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/proffesionals/home">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/proffesionals/proffesionalProfile/:id">My profile</Nav.Link> */}
-              {/* לבדוק איפה ההודעות של האיש מקצוע */}
-              {/* <Nav.Link href="/client/datepicker">My messages</Nav.Link> */}
-              {/* <Nav.Link href="/proffesionals/eventsProffesional">My events</Nav.Link>
+        {/* לבדוק איפה ההודעות של האיש מקצוע */}
+        {/* <Nav.Link href="/client/datepicker">My messages</Nav.Link> */}
+        {/* <Nav.Link href="/proffesionals/eventsProffesional">My events</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar> */}
-      <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
+        <h2 className='text-dark p-4'>hi {info.name?.firstName}</h2>
+      </div>
     </div>
   );
 }
