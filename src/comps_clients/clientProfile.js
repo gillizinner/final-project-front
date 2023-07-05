@@ -18,21 +18,21 @@ export default function ClientProfile() {
     }, [])
 
     const doApiInit = async () => {
-        if (localStorage[MY_INFO]) {
-            setInfo(JSON.parse(localStorage[MY_INFO]));
-        }
-        else {
+        // if (localStorage[MY_INFO]) {
+        //     setInfo(JSON.parse(localStorage[MY_INFO]));
+        // }
+        // else {
             let url = API_URL + "/clients/myInfo";
             try {
                 let resp = await doApiMethod(url, "GET");
                 console.log(resp.data);
-                setInfo(JSON.parse(localStorage[MY_INFO]));
+                setInfo(resp.data);
             }
             catch (err) {
                 console.log(err);
                 alert("There problem try come back later");
             }
-        }
+        // }
     }
 
     return (
