@@ -19,20 +19,20 @@ export default function ProffesionalProfile() {
 
 
     const doApiInit = async () => {
-        if (localStorage[MY_PROINFO]) {
-            setInfo(JSON.parse(localStorage[MY_PROINFO]));
-        } else {
+        // if (localStorage[MY_PROINFO]) {
+        //     setInfo(JSON.parse(localStorage[MY_PROINFO]));
+        // } else {
             let url = API_URL + "/proffesionals/myInfo";
             try {
                 let resp = await doApiMethod(url, "GET");
                 console.log(resp.data);
-                setInfo(JSON.parse(localStorage[MY_PROINFO]));
+                setInfo(resp.data);
             }
             catch (err) {
                 console.log(err);
                 alert("There problem try come back later");
             }
-        }
+        // }
 
     }
 
